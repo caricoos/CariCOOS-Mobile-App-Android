@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/alexanderpadin/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
+        <dex dex="/Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.0-d2abc2c2c8f9cea209e9c2c3753b7bd51995650d.jar" />
+    </item>
+    <item
+        jar="/Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
+        <dex dex="/Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/pre-dexed/debug/classes-cc6d8ffe4fdea7c17a4099bb1df38ccf3a077285.jar" />
+    </item>
+    <item
+        jar="/Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="/Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/pre-dexed/debug/classes-c1294080bd6b78f06779452142cfbaf6081ce372.jar" />
+    </item>
+    <item
+        jar="/Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/libs/internal_impl-21.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
+        <dex dex="/Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-ce584ad25720a498dec5e196b0c41b29c5dd3851.jar" />
+    </item>
+
+</items>
