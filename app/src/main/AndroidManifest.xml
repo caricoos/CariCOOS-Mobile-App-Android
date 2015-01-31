@@ -42,7 +42,7 @@
         
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDX1ROiFGUspQr15koAf9vIO8Eqe187Qt0" />
+            android:value="AIzaSyD1G9DEKFHGX28UGE9lUNGp4ss2DFP4184" />
 
         <meta-data 
             android:name="com.google.android.gms.version"
@@ -50,6 +50,10 @@
         />
         <!-- Debug: AIzaSyDX1ROiFGUspQr15koAf9vIO8Eqe187Qt0 -->
         <!-- Release: AIzaSyBcuiZUwT1IQH4iNmvGFAt3HohgGeOgb7I -->
+
+
+
+        <!-- New Debug: AIzaSyD1G9DEKFHGX28UGE9lUNGp4ss2DFP4184 -->
         
     </application>
 </manifest>

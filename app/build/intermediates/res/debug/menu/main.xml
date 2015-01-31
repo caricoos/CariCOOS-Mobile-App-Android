@@ -10,7 +10,11 @@
         android:title="Buoy Filter"
         android:icon="@drawable/filter"
         android:showAsAction="ifRoom"/>
-     <item
+    <item
+        android:id="@+id/presetTab"
+        android:title="Pre-Settings"/>
+
+    <item
         android:id="@+id/about"
         android:title="About"/>
 

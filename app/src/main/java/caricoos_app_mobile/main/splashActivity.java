@@ -1,6 +1,16 @@
 package caricoos_app_mobile.main;
 
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,21 +18,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import org.apache.http.client.ClientProtocolException;
-
-
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
  
 public class splashActivity extends Activity {
   
@@ -54,11 +49,11 @@ public class splashActivity extends Activity {
  
         @Override
         protected Void doInBackground(Void... arg0) {
-        	fetch fetchObj = new fetch(/*URL*/"http://136.145.59.33/app/elmer/csv/JsonBuoyData.json");
+        	fetch fetchObj = new fetch(/*URL: http://136.145.59.33/app/elmer/csv/JsonBuoyData.json"*/ "http://apadn.org/mobile.json");
         	try {
 				DATA = fetchObj.postDataException();
 			}catch (IOException e) {
-				fetchObj = new fetch(/*URL*/"http://136.145.249.39/app/elmer/csv/JsonBuoyData.json");
+				fetchObj = new fetch(/*URL: http://136.145.59.33/app/elmer/csv/JsonBuoyData.json"*/ "http://apadn.org/mobile.json");
 			}
         	
         	DATA = fetchObj.postData();
