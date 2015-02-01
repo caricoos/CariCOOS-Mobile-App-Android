@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
@@ -51,12 +52,17 @@ public class MainActivity extends FragmentActivity {
     private GoogleMap googleMap;
     private String mapType;
 	private JSONArray data;
+    private int mapLocationPreConfig;
 	ArrayList<Marker> markers = new ArrayList<Marker>();
 	ArrayList<String> filters = new ArrayList<String>();
 	CheckBox caricoos_check;
 	CheckBox wflow_check;
 	boolean caricoos_checked = true;
 	boolean wflow_checked = true;
+    private CheckBox pr_preconfig;
+    private CheckBox west_preconfig;
+    private CheckBox sj_preconfig;
+    private CheckBox vi_preconfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +73,7 @@ public class MainActivity extends FragmentActivity {
         Typeface typeface = Typeface.createFromAsset(this.getAssets(), "Roboto-LightItalic.ttf");
         title.setTypeface(typeface);
         setUpMapIfNeeded();
+        setMapPreConfig();
 
         try {			
         	data = new JSONArray(readFile("data.json"));
@@ -81,7 +88,7 @@ public class MainActivity extends FragmentActivity {
             }
         } catch (Exception e) { e.printStackTrace(); }
     }
-    
+
     @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -103,6 +110,10 @@ public class MainActivity extends FragmentActivity {
 			return true;
 		} else if(itemId == R.id.presetTab) {
             showPreSetsOpts();
+            return true;
+        } else if(itemId == R.id.radarView) {
+            Intent i = new Intent(getApplicationContext(), radar.class);
+            startActivity(i);
             return true;
         } else {
 			return super.onOptionsItemSelected(item);
@@ -148,12 +159,26 @@ public class MainActivity extends FragmentActivity {
         if (googleMap == null) {
         	googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
             googleMap.getUiSettings().setZoomControlsEnabled(true);
-            if (googleMap != null) {
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setUpMapIfNeeded();
+    }
+
+    private void setMapPreConfig() {
+        if (googleMap != null) {
                 String mapPreSet = setPreSet();
+
+                Log.i("PreConfig", "" + mapPreSet);
 
                 String[] parts = mapPreSet.split(":");
                 String mapTypePreSet = parts[0];
                 String mapLocationPreSet = parts[1];
+
+                mapLocationPreConfig = Integer.parseInt(mapLocationPreSet);
 
                 if(Integer.parseInt(mapTypePreSet) == 1){
                     googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
@@ -176,13 +201,6 @@ public class MainActivity extends FragmentActivity {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(18.025751,-64.761658), 9));
                 }
             }
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setUpMapIfNeeded();
     }
 
     private String setPreSet(){
@@ -205,20 +223,20 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	public void changeType() {
-    	if(mapType.equals("satellite")) {
+    	if(mapType.equals("terrain")) {
+    		googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+    		mapType = "satellite";
+            updatePreSets(3, -1);
+    	}
+    	else if(mapType.equals("satellite")) {
     		googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
     		mapType = "normal";
             updatePreSets(2, -1);
     	}
-    	else if(mapType.equals("normal")) {
-    		googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-    		mapType = "terrain";
-            updatePreSets(1, -1);
-    	}
-    	else if (mapType.equals("terrain")) {
+    	else if (mapType.equals("normal")) {
     		googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-    		mapType = "satellite";
-            updatePreSets(3, -1);
+            mapType = "terrain";
+            updatePreSets(1, -1);
     	}
     }
     
@@ -377,7 +395,7 @@ public class MainActivity extends FragmentActivity {
     		dialog.show();
     }
     
-    JSONObject getBouy(String name) throws JSONException {
+    private JSONObject getBouy(String name) throws JSONException {
     	for(int i = 0 ; i< data.length() ; i++){
     		String target = data.getJSONObject(i).getString("name");
     		if(target.equals(name)) {
@@ -434,7 +452,6 @@ public class MainActivity extends FragmentActivity {
     	dialog.show();
     }
 
-
     private void showPreSetsOpts() {
 
         final Dialog dialog = new Dialog(MainActivity.this);
@@ -442,16 +459,91 @@ public class MainActivity extends FragmentActivity {
         dialog.setContentView(R.layout.presets);
         dialog.setTitle("Location Pre-Settings");
 
-        //Verify presets and check and uncheck elemets
+        pr_preconfig = (CheckBox) dialog.findViewById(R.id.PR_preset_check);
+        west_preconfig = (CheckBox) dialog.findViewById(R.id.WEST_preset_check);
+        sj_preconfig = (CheckBox) dialog.findViewById(R.id.SJ_preset_check);
+        vi_preconfig = (CheckBox) dialog.findViewById(R.id.VI_preset_check);
 
-        //Logic if one clicked others unchecked.
+        if(mapLocationPreConfig == 1) {
+            pr_preconfig.setChecked(true);
+        } else if(mapLocationPreConfig == 2) {
+            west_preconfig.setChecked(true);
+        } else if(mapLocationPreConfig == 3) {
+            sj_preconfig.setChecked(true);
+        } else {
+            vi_preconfig.setChecked(true);
+        }
+
+        pr_preconfig.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    west_preconfig.setChecked(false);
+                    sj_preconfig.setChecked(false);
+                    vi_preconfig.setChecked(false);
+                    mapLocationPreConfig = 1;
+                    updatePreSets(-1,mapLocationPreConfig);
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(18.450927, -66.109972), 8));
+                } else {
+                    //pr_preconfig.setChecked(true);
+                   // Toast.makeText(getApplicationContext(), "PR Called", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        west_preconfig.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    pr_preconfig.setChecked(false);
+                    sj_preconfig.setChecked(false);
+                    vi_preconfig.setChecked(false);
+                    mapLocationPreConfig = 2;
+                    updatePreSets(-1,mapLocationPreConfig);
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(18.251524, -67.028961), 10));
+                } else {
+                    //west_preconfig.setChecked(true);
+                   // Toast.makeText(getApplicationContext(), "WEST Called", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        sj_preconfig.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    pr_preconfig.setChecked(false);
+                    west_preconfig.setChecked(false);
+                    vi_preconfig.setChecked(false);
+                    mapLocationPreConfig = 3;
+                    updatePreSets(-1,mapLocationPreConfig);
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(18.430108,-66.108856), 12));
+                } else {
+                    //sj_preconfig.setChecked(true);
+                }
+            }
+        });
+
+        vi_preconfig.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    pr_preconfig.setChecked(false);
+                    sj_preconfig.setChecked(false);
+                    west_preconfig.setChecked(false);
+                    mapLocationPreConfig = 4;
+                    updatePreSets(-1,mapLocationPreConfig);
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(18.025751,-64.761658), 9));
+                } else {
+                    //vi_preconfig.setChecked(true);
+                }
+            }
+        });
 
         Button filter_button = (Button) dialog.findViewById(R.id.presets_button);
         filter_button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Update preset file
-                //change location
                 dialog.dismiss();
             }
         });
@@ -493,12 +585,14 @@ public class MainActivity extends FragmentActivity {
 			//To compare dates
 			Calendar c = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String ThisDate = sdf.format(c.getTime()); 
+			String ThisDate = sdf.format(c.getTime());
+            Log.i("DATE1", ""+ThisDate);
 
             try{
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 Date date1 = formatter.parse(ThisDate);
                 Date date2 = formatter.parse(object.getString("date"));
+                Log.i("DATE2", ""+date2.toString());
 
                 if (date1.compareTo(date2) > 0) {
 	       		     isUpdate = false;                          
@@ -541,7 +635,7 @@ public class MainActivity extends FragmentActivity {
 	    		}});
     }
     
-    String roundZero(String num){
+    private String roundZero(String num){
     	int i = num.length()-1;
     	String newNum = "";
     	for(; i >= 0; i--){
@@ -559,7 +653,7 @@ public class MainActivity extends FragmentActivity {
     	return newNum;
     }
 
-    String fixDateTime(String numDate, String numTime){
+    private String fixDateTime(String numDate, String numTime){
     	String[] newDate = numDate.split("-");
     	String[] newTime = numTime.split(":");
 
