@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="TypographyDashes">
+    <integer name="ga_sessionTimeout">300</integer>
+    <bool name="ga_autoActivityTracking">true</bool>
+    <screenName name="caricoos_app_mobile.main.MainActivity">
+        Main Map Screen
+    </screenName>
+    <screenName name="caricoos_app_mobile.main.radar">
+        Radar Screen
+    </screenName>
+
+    <string name="ga_trackingId">UA-59293910-1</string>
+</resources>

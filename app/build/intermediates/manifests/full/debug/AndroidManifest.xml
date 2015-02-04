@@ -21,6 +21,7 @@
         android:required="true" />
 
     <application
+        android:name="caricoos_app_mobile.main.Analytics"
         android:allowBackup="true"
         android:icon="@drawable/coos"
         android:label="@string/app_name"

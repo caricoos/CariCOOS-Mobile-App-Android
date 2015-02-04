@@ -21,6 +21,9 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
@@ -47,6 +50,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import caricoos_app_mobile.main.Analytics.TrackerName;
+
 public class MainActivity extends FragmentActivity {
 	 
     private GoogleMap googleMap;
@@ -68,6 +73,18 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+            Tracker t = ((Analytics) getApplication()).getTracker(
+                    TrackerName.APP_TRACKER);
+            t.setScreenName("Main Activity");
+            t.send(new HitBuilders.AppViewBuilder().build());
+            Log.i("Google Analytics Succeed", "Worked!!");
+        }
+        catch(Exception  e) {
+            Log.e("Google Analytics Error", "" + e.getMessage());
+        }
+
         int titleId = getResources().getIdentifier("action_bar_title", "id","android");
         TextView title = (TextView) findViewById(titleId);
         Typeface typeface = Typeface.createFromAsset(this.getAssets(), "Roboto-LightItalic.ttf");
@@ -87,6 +104,17 @@ public class MainActivity extends FragmentActivity {
                 createMarkers(data.getJSONObject(i));
             }
         } catch (Exception e) { e.printStackTrace(); }
+    }
+
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     @Override

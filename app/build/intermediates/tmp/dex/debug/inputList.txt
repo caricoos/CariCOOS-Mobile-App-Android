@@ -1,5 +1,6 @@
 /Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/classes/debug
 /Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.0-d2abc2c2c8f9cea209e9c2c3753b7bd51995650d.jar
 /Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-ce584ad25720a498dec5e196b0c41b29c5dd3851.jar
+/Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/pre-dexed/debug/libGoogleAnalyticsServices-58e16502cbe9910df285d5b0209f702f68f31c02.jar
 /Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/pre-dexed/debug/classes-cc6d8ffe4fdea7c17a4099bb1df38ccf3a077285.jar
 /Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/build/intermediates/pre-dexed/debug/classes-c1294080bd6b78f06779452142cfbaf6081ce372.jar
