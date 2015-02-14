@@ -9,6 +9,9 @@
     <screenName name="caricoos_app_mobile.main.radar">
         Radar Screen
     </screenName>
+    <screenName name="caricoos_app_mobile.main.splashActivity">
+        Splash Screen
+    </screenName>
 
     <string name="ga_trackingId">UA-59293910-1</string>
 </resources>

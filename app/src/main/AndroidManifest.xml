@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="caricoos_app_mobile.main"
-    android:versionCode="8"
-    android:versionName="1.7" >
+    android:versionCode="10"
+    android:versionName="2.1" >
 
     <uses-sdk
         android:minSdkVersion="12"
@@ -45,15 +45,17 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyD1G9DEKFHGX28UGE9lUNGp4ss2DFP4184" />
+            android:value="AIzaSyAkLIWqL1UtpNL4Hd1LWExwMgoajmZLX1Y" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <!-- Debug: AIzaSyDX1ROiFGUspQr15koAf9vIO8Eqe187Qt0 -->
-        <!-- Release: AIzaSyBcuiZUwT1IQH4iNmvGFAt3HohgGeOgb7I -->
+        <!-- Old Release: AIzaSyBcuiZUwT1IQH4iNmvGFAt3HohgGeOgb7I -->
 
         <!-- New Debug: AIzaSyD1G9DEKFHGX28UGE9lUNGp4ss2DFP4184 -->
+        <!-- New Production: AIzaSyAkLIWqL1UtpNL4Hd1LWExwMgoajmZLX1Y -->
+
+        <!-- Make sure tho change to 'New Debug' -->
 
         <activity
             android:name=".radar"

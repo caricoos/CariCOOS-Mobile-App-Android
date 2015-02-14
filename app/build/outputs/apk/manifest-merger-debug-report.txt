@@ -117,8 +117,8 @@ MERGED from com.google.android.gms:play-services:6.5.87:21:9
 	android:name
 		ADDED from AndroidManifest.xml:50:13
 activity#caricoos_app_mobile.main.radar
-ADDED from AndroidManifest.xml:58:9
+ADDED from AndroidManifest.xml:60:9
 	android:label
-		ADDED from AndroidManifest.xml:60:13
+		ADDED from AndroidManifest.xml:62:13
 	android:name
-		ADDED from AndroidManifest.xml:59:13
+		ADDED from AndroidManifest.xml:61:13
