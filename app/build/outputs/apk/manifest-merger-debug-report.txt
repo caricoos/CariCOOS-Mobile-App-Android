@@ -96,29 +96,43 @@ ADDED from AndroidManifest.xml:37:17
 	android:name
 		ADDED from AndroidManifest.xml:37:27
 activity#caricoos_app_mobile.main.MainActivity
-ADDED from AndroidManifest.xml:40:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:43:13
+ADDED from AndroidManifest.xml:41:9
 	android:label
-		ADDED from AndroidManifest.xml:42:13
+		ADDED from AndroidManifest.xml:43:13
 	android:name
-		ADDED from AndroidManifest.xml:41:13
-meta-data#com.google.android.maps.v2.API_KEY
+		ADDED from AndroidManifest.xml:42:13
+activity#caricoos_app_mobile.main.radar
 ADDED from AndroidManifest.xml:46:9
-	android:value
+	android:label
 		ADDED from AndroidManifest.xml:48:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:49:13
 	android:name
 		ADDED from AndroidManifest.xml:47:13
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from AndroidManifest.xml:50:13
+	android:value
+		ADDED from AndroidManifest.xml:52:17
+	android:name
+		ADDED from AndroidManifest.xml:51:17
+activity#caricoos_app_mobile.main.forecast
+ADDED from AndroidManifest.xml:55:9
+	android:label
+		ADDED from AndroidManifest.xml:57:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:58:13
+	android:name
+		ADDED from AndroidManifest.xml:56:13
+meta-data#com.google.android.maps.v2.API_KEY
+ADDED from AndroidManifest.xml:64:9
+	android:value
+		ADDED from AndroidManifest.xml:66:13
+	android:name
+		ADDED from AndroidManifest.xml:65:13
 meta-data#com.google.android.gms.version
-ADDED from AndroidManifest.xml:49:9
+ADDED from AndroidManifest.xml:67:9
 MERGED from com.google.android.gms:play-services:6.5.87:21:9
 	android:value
-		ADDED from AndroidManifest.xml:51:13
+		ADDED from AndroidManifest.xml:69:13
 	android:name
-		ADDED from AndroidManifest.xml:50:13
-activity#caricoos_app_mobile.main.radar
-ADDED from AndroidManifest.xml:60:9
-	android:label
-		ADDED from AndroidManifest.xml:62:13
-	android:name
-		ADDED from AndroidManifest.xml:61:13
+		ADDED from AndroidManifest.xml:68:13

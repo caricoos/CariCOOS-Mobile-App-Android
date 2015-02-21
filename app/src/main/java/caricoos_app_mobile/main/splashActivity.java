@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -19,12 +20,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class splashActivity extends Activity {
 
     public ProgressBar pb;
     private static int SPLASH_TIME_OUT = 3000;
     public String DATA;
+    public String DATA_FORECAST;
     public boolean dataReady = true;
+    public boolean dataReady_forecast = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +53,25 @@ public class splashActivity extends Activity {
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            fetch fetchObj = new fetch(/*URL*/"http://136.145.59.33/app/elmer/csv/JsonBuoyData.json");
-            try {
-                DATA = fetchObj.postDataException();
-            }catch (IOException e) {
-                fetchObj = new fetch(/*URL*/"http://136.145.249.39/app/elmer/csv/JsonBuoyData.json");
-            }
+            fetch fetchObj =
+                    new fetch(/*URL*/"http://136.145.249.39/app/elmer/csv/JsonBuoyData.json");
 
             DATA = fetchObj.postData();
 
             if(DATA.isEmpty()) {
                 dataReady = false;
             }
+
+            fetch fetchObj_forecast =
+                    new fetch(/*URL*/"http://caricoos.org/Swan.json");
+
+            DATA_FORECAST = fetchObj_forecast.postData();
+
+            if(DATA.isEmpty()) {
+                dataReady_forecast = false;
+            }
+
+
 
             return null;
         }
@@ -72,7 +83,7 @@ public class splashActivity extends Activity {
 
             if (!dataReady /*Verify if data is ready*/) {
                 Toast.makeText(getApplicationContext(),
-                        "There was a network error.", Toast.LENGTH_LONG).show();
+                        "There was na network error.", Toast.LENGTH_LONG).show();
             } else {
                 File data_file = getFileStreamPath("data.json");
                 File date_file = getFileStreamPath("date.txt");
@@ -87,6 +98,20 @@ public class splashActivity extends Activity {
                 Date date = new Date();
                 createFile("date.txt", dateFormat.format(date));
             }
+
+
+            if (!dataReady_forecast /*Verify if data is ready*/) {
+                Toast.makeText(getApplicationContext(),
+                        "There was na network error.", Toast.LENGTH_LONG).show();
+            } else {
+                File data_file = getFileStreamPath("data_forecast.json");
+                if(data_file.exists()){
+                    data_file.delete();
+                }
+                createFile("data_forecast.json", DATA_FORECAST);
+                Log.i("FORECAST", ""+DATA_FORECAST);
+            }
+
             Intent i = new Intent(splashActivity.this, MainActivity.class);
             startActivity(i);
             finish();

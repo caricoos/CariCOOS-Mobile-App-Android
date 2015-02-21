@@ -17,6 +17,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
@@ -57,17 +59,27 @@ public class MainActivity extends FragmentActivity {
     private GoogleMap googleMap;
     private String mapType;
 	private JSONArray data;
+    private JSONArray data_forecast;
     private int mapLocationPreConfig;
 	ArrayList<Marker> markers = new ArrayList<Marker>();
+    ArrayList<String> markers_keys = new ArrayList<String>();
+    ArrayList<Marker> markers_forecast = new ArrayList<Marker>();
+    ArrayList<String> markers_keys_forecast= new ArrayList<String>();
 	ArrayList<String> filters = new ArrayList<String>();
 	CheckBox caricoos_check;
 	CheckBox wflow_check;
+    CheckBox forecast_check;
 	boolean caricoos_checked = true;
 	boolean wflow_checked = true;
+    boolean forecast_checked = false;
     private CheckBox pr_preconfig;
     private CheckBox west_preconfig;
     private CheckBox sj_preconfig;
     private CheckBox vi_preconfig;
+
+    private LinearLayout leyend_tab;
+    private LinearLayout leyend_body;
+    private ImageView leyend_arrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +116,36 @@ public class MainActivity extends FragmentActivity {
                 createMarkers(data.getJSONObject(i));
             }
         } catch (Exception e) { e.printStackTrace(); }
+
+
+        try {
+            data_forecast = new JSONArray(readFile("data_forecast.json"));
+        } catch (JSONException e) { e.printStackTrace(); }
+
+        try {
+            for(int i = 0 ; i< data_forecast.length() ; i++){
+                createMarkersForecast(data_forecast.getJSONObject(i));
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+
+
+        leyend_tab = (LinearLayout) findViewById(R.id.leyend_header);
+        leyend_body = (LinearLayout) findViewById(R.id.leyend);
+        leyend_arrow = (ImageView) findViewById(R.id.leyend_arrow);
+
+        leyend_tab.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (leyend_body.getVisibility() == View.GONE) {
+                    leyend_body.setVisibility(View.VISIBLE);
+                    leyend_arrow.setImageResource(R.drawable.up);
+                } else {
+                    leyend_body.setVisibility(View.GONE);
+                    leyend_arrow.setImageResource(R.drawable.down);
+                }
+            }
+        });
+
     }
 
     protected void onStart() {
@@ -163,7 +205,15 @@ public class MainActivity extends FragmentActivity {
             "\t\t - Coastal Mesonet wind stations\n\n" +
             "Excellent tool for surfing, boating, fishing, sailing and marine operations. \n" +
             "Includes all US Caribbean coastal regions (Puerto Rico and US Virgin Islands)."
-    	); 
+    	);
+
+        Button close_about_btn = (Button) dialog.findViewById(R.id.close_about);
+        close_about_btn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
 
     	TextView website = (TextView) dialog.findViewById(R.id.website);
     	website.setText("CariCOOS.org");
@@ -288,7 +338,7 @@ public class MainActivity extends FragmentActivity {
     }
     
     public void createPopUp(String buoy, int tab) {
-    	Dialog dialog = new Dialog(MainActivity.this);
+    	final Dialog dialog = new Dialog(MainActivity.this);
     	dialog.setCancelable(true);    	
     	dialog.setContentView(R.layout.popup);
     	dialog.setTitle(buoy);
@@ -328,6 +378,14 @@ public class MainActivity extends FragmentActivity {
     	TextView atmospheric_pressure = (TextView) dialog.findViewById(R.id.atmospheric_pressure);
     	TextView current_speed = (TextView) dialog.findViewById(R.id.current_speed);
     	TextView current_direction = (TextView) dialog.findViewById(R.id.current_direction);
+
+        Button closeButton = (Button) dialog.findViewById(R.id.close_popup);
+        closeButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     	
     	//Add dataDate
     	TextView dateWaveData = (TextView) dialog.findViewById(R.id.date_wave_data);
@@ -472,7 +530,7 @@ public class MainActivity extends FragmentActivity {
 		    	} else {
 		    		wflow_checked = false;
 		    	}
-				setMarkersVisible();
+				setMarkersInvisible();
 		    	createFilter();
 		    	dialog.dismiss();
 			}
@@ -582,14 +640,14 @@ public class MainActivity extends FragmentActivity {
     	for(int i = 0 ; i < filters.size() ; i++) {
     		String filter = filters.get(i);
     		for(int j = 0 ; j < markers.size() ; j++) {
-    			if(((markers.get(j)).getSnippet().toString()).equals(filter + " (more info)")) {
+    			if(((markers_keys.get(j)).toString()).equals(filter)) {
     				markers.get(j).setVisible(true);
     			}
     		}
     	}
     }
     
-    public void setMarkersVisible() {
+    public void setMarkersInvisible() {
 		for(int i = 0 ; i < markers.size() ; i++) {
 			(markers.get(i)).setVisible(false);
 		}
@@ -630,39 +688,100 @@ public class MainActivity extends FragmentActivity {
 		} catch (JSONException e) {	}
     	
 	    if(objPlatform.equals("wflow") || objPlatform.equals("ndbc")) {
-	    	icon = R.drawable.buoy_red;
-	        if(!isUpdate)
-	        icon = R.drawable.travel_warning;
-	    	
-	       	LatLng location = new LatLng(Double.valueOf(lat), Double.valueOf(log));
-	       	Marker marker = googleMap.addMarker(new MarkerOptions()
-	       		.position(location)
-        		.title(objName)
-	       	    .snippet(objPlatform + " (more info)")
-	       	    .icon(BitmapDescriptorFactory.fromResource(icon)));
-	   		markers.add(marker);
+
+            if(!isUpdate) {
+                icon = R.drawable.travel_warning;
+                LatLng location = new LatLng(Double.valueOf(lat), Double.valueOf(log));
+                Marker marker = googleMap.addMarker(new MarkerOptions()
+                        .position(location)
+                        .title(objName)
+                        .snippet("Instrument out of order")
+                        .icon(BitmapDescriptorFactory.fromResource(icon)));
+                markers.add(marker);
+                markers_keys.add(objPlatform);
+            } else {
+                icon = R.drawable.buoy_red;
+                LatLng location = new LatLng(Double.valueOf(lat), Double.valueOf(log));
+                Marker marker = googleMap.addMarker(new MarkerOptions()
+                        .position(location)
+                        .title(objName)
+                        .snippet("Press box for more info")
+                        .icon(BitmapDescriptorFactory.fromResource(icon)));
+                markers.add(marker);
+                markers_keys.add(objPlatform);
+
+            }
 
 	    } else if((objPlatform).equals("caricoos")){
-	    	    icon = R.drawable.buoy_coos;
-	    	if(!isUpdate)
-	    		icon = R.drawable.travel_warning;
-	    	
-	        LatLng location = new LatLng(Double.valueOf(lat), Double.valueOf(log));
-	       	Marker marker = googleMap.addMarker(new MarkerOptions()
-	       		.position(location)
-	       		.title(objName)
-	        	.snippet(objPlatform + " (more info)")
-	        	.icon(BitmapDescriptorFactory.fromResource(icon)));
-    		markers.add(marker);
 
+            if(!isUpdate) {
+                icon = R.drawable.travel_warning;
+                LatLng location = new LatLng(Double.valueOf(lat), Double.valueOf(log));
+                Marker marker = googleMap.addMarker(new MarkerOptions()
+                        .position(location)
+                        .title(objName)
+                        .snippet("Instrument out of order")
+                        .icon(BitmapDescriptorFactory.fromResource(icon)));
+                markers.add(marker);
+                markers_keys.add(objPlatform);
+            } else {
+                icon = R.drawable.buoy_coos;
+                LatLng location = new LatLng(Double.valueOf(lat), Double.valueOf(log));
+                Marker marker = googleMap.addMarker(new MarkerOptions()
+                        .position(location)
+                        .title(objName)
+                        .snippet("Press box for more info")
+                        .icon(BitmapDescriptorFactory.fromResource(icon)));
+                markers.add(marker);
+                markers_keys.add(objPlatform);
+            }
 	    }
 	    	googleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 	    		@Override
-				public void onInfoWindowClick(com.google.android.gms.maps.model.Marker marker) {	
-	    			createPopUp(marker.getTitle(),0);
+				public void onInfoWindowClick(com.google.android.gms.maps.model.Marker marker) {
+                    if(!(marker.getSnippet().toString()).equals("Instrument out of order")) {
+                        createPopUp(marker.getTitle(),0);
+                    }
 	    		}});
     }
-    
+
+    public void createMarkersForecast(JSONObject object) {
+        String NAME = "";
+        String FANCYNAME = "";
+        String LAT = "";
+        String LON = "";
+
+        try {
+            NAME = object.getString("NAME");
+            FANCYNAME = object.getString("FANCYNAME");
+            LAT = object.getString("LAT");
+            LON = object.getString("LON");
+
+            final String name = NAME;
+            LatLng location = new LatLng(Double.valueOf(LAT), Double.valueOf(LON));
+            Marker marker = googleMap.addMarker(new MarkerOptions()
+                    .position(location)
+                    .title(FANCYNAME)
+                    .snippet("Press box for more info")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.buoy_blue)));
+
+
+            googleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(com.google.android.gms.maps.model.Marker marker) {
+                    Intent i = new Intent(getApplicationContext(), forecast.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("url", name);
+                    i.putExtras(bundle);
+                    startActivity(i);
+                }});
+
+            markers_forecast.add(marker);
+            markers_keys_forecast.add("forecast");
+
+        } catch (JSONException e) {	}
+    }
+
     private String roundZero(String num){
     	int i = num.length()-1;
     	String newNum = "";

@@ -4,96 +4,118 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal">
-    
-    
-   	<LinearLayout
-       	android:layout_width="fill_parent"
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="20dp" >
-        
-	    <CheckBox android:id="@+id/caricoos_check"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="CariCOOS (wave, wind, current)"
-	        android:checked="true"
-	        android:layout_marginBottom="10dp"/>
-	    
-	    <View 
-   			android:layout_width="fill_parent"
-   			android:layout_height="1dp"       
-   			android:background="#287AA9"/>
-	   
-	    <!--  
-	    <CheckBox android:id="@+id/nsw_check"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="NSW (current)"
-	        android:checked="true"
-	        android:layout_marginBottom="10dp"
-	        android:layout_marginTop="10dp"/>
-	    
-	  	<View 
-   			android:layout_width="fill_parent"
-   			android:layout_height="1dp"       
-   			android:background="#287AA9"/>
-   		-->
-	    
-	    <CheckBox android:id="@+id/wflow_check"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Wind"
-	        android:checked="true"
-	        android:layout_marginBottom="10dp"
-	        android:layout_marginTop="10dp"/>
-	    
-	<!--    <View 
-   			android:layout_width="fill_parent"
-   			android:layout_height="1dp"       
-   			android:background="#287AA9"/>
-	    
-	    <CheckBox android:id="@+id/ndbc_check"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="NDBC (wind)"
-	        android:checked="true"
-	        android:layout_marginBottom="10dp"
-	        android:layout_marginTop="10dp"/>
-	    
-	    <View 
-   			android:layout_width="fill_parent"
-   			android:layout_height="1dp"       
-   			android:background="#287AA9"/>
-	    
-	    <CheckBox android:id="@+id/swan_check"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="SWAN (wave)"
-	        android:checked="true"
-	        android:layout_marginBottom="10dp"
-	        android:layout_marginTop="10dp"/>
-	    
-	    <View 
-   			android:layout_width="fill_parent"
-   			android:layout_height="1dp"       
-   			android:background="#287AA9"/>
-   			
-   		
-	    
-	    <CheckBox android:id="@+id/wave_check"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="WAVE"
-	        android:checked="true"
-	        android:layout_marginTop="10dp"/>-->
-   	</LinearLayout>
-	    
-	<Button
-		android:id="@+id/filter_button"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="FILTER" 
-	    android:paddingRight="20dp"
-	    android:paddingLeft="20dp"/>
-    
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="CariCOOS Buoys" />
+
+            <CheckBox android:id="@+id/caricoos_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text=""
+                android:checked="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#80000000"/>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="Wind Observation" />
+
+            <CheckBox android:id="@+id/wflow_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text=""
+                android:checked="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#80000000"/>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="Forecast Observation" />
+
+            <CheckBox android:id="@+id/forecast_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:checked="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#80000000"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/filter_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="FILTER"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"/>
+
 </LinearLayout>
