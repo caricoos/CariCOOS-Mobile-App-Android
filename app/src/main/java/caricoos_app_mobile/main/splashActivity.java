@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -24,7 +23,7 @@ import java.util.Date;
 public class splashActivity extends Activity {
 
     public ProgressBar pb;
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 1000;
     public String DATA;
     public String DATA_FORECAST;
     public boolean dataReady = true;
@@ -34,6 +33,12 @@ public class splashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
+
+        try {
+            Bundle bundle = getIntent().getExtras();
+            SPLASH_TIME_OUT = Integer.parseInt(bundle.getString("delay"));
+        } catch(Exception e) { e.printStackTrace(); }
+
         pb = (ProgressBar) findViewById(R.id.progressBar1);
         pb.setVisibility(View.INVISIBLE);
         new Handler().postDelayed(new Runnable() {
@@ -54,7 +59,7 @@ public class splashActivity extends Activity {
         @Override
         protected Void doInBackground(Void... arg0) {
             fetch fetchObj =
-                    new fetch(/*URL*/"http://136.145.249.39/app/elmer/csv/JsonBuoyData.json");
+                    new fetch( /*URL*/ "http://136.145.249.39/app/elmer/csv/JsonBuoyData.json");
 
             DATA = fetchObj.postData();
 
@@ -63,7 +68,7 @@ public class splashActivity extends Activity {
             }
 
             fetch fetchObj_forecast =
-                    new fetch(/*URL*/"http://caricoos.org/Swan.json");
+                    new fetch( /*URL*/ "http://caricoos.org/Swan.json");
 
             DATA_FORECAST = fetchObj_forecast.postData();
 
@@ -71,15 +76,12 @@ public class splashActivity extends Activity {
                 dataReady_forecast = false;
             }
 
-
-
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            //Log.i("coos", ""+result);
 
             if (!dataReady /*Verify if data is ready*/) {
                 Toast.makeText(getApplicationContext(),
@@ -99,7 +101,6 @@ public class splashActivity extends Activity {
                 createFile("date.txt", dateFormat.format(date));
             }
 
-
             if (!dataReady_forecast /*Verify if data is ready*/) {
                 Toast.makeText(getApplicationContext(),
                         "There was na network error.", Toast.LENGTH_LONG).show();
@@ -109,7 +110,6 @@ public class splashActivity extends Activity {
                     data_file.delete();
                 }
                 createFile("data_forecast.json", DATA_FORECAST);
-                Log.i("FORECAST", ""+DATA_FORECAST);
             }
 
             Intent i = new Intent(splashActivity.this, MainActivity.class);

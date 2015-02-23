@@ -61,17 +61,21 @@ public class MainActivity extends FragmentActivity {
 	private JSONArray data;
     private JSONArray data_forecast;
     private int mapLocationPreConfig;
+
 	ArrayList<Marker> markers = new ArrayList<Marker>();
     ArrayList<String> markers_keys = new ArrayList<String>();
     ArrayList<Marker> markers_forecast = new ArrayList<Marker>();
     ArrayList<String> markers_keys_forecast= new ArrayList<String>();
 	ArrayList<String> filters = new ArrayList<String>();
+
 	CheckBox caricoos_check;
 	CheckBox wflow_check;
     CheckBox forecast_check;
+
 	boolean caricoos_checked = true;
 	boolean wflow_checked = true;
     boolean forecast_checked = false;
+
     private CheckBox pr_preconfig;
     private CheckBox west_preconfig;
     private CheckBox sj_preconfig;
@@ -91,7 +95,6 @@ public class MainActivity extends FragmentActivity {
                     TrackerName.APP_TRACKER);
             t.setScreenName("Main Activity");
             t.send(new HitBuilders.AppViewBuilder().build());
-            Log.i("Google Analytics Succeed", "Worked!!");
         }
         catch(Exception  e) {
             Log.e("Google Analytics Error", "" + e.getMessage());
@@ -115,17 +118,20 @@ public class MainActivity extends FragmentActivity {
                 }
                 createMarkers(data.getJSONObject(i));
             }
-        } catch (Exception e) { e.printStackTrace(); }
 
+        } catch (Exception e) { e.printStackTrace(); }
 
         try {
             data_forecast = new JSONArray(readFile("data_forecast.json"));
-        } catch (JSONException e) { e.printStackTrace(); }
+        } catch (JSONException e) { e.printStackTrace();
+            }
 
         try {
             for(int i = 0 ; i< data_forecast.length() ; i++){
                 createMarkersForecast(data_forecast.getJSONObject(i));
             }
+
+
         } catch (Exception e) { e.printStackTrace(); }
 
 
@@ -145,6 +151,11 @@ public class MainActivity extends FragmentActivity {
                 }
             }
         });
+
+        setInfoWindow();
+
+        generateInitialFilters();
+
 
     }
 
@@ -173,12 +184,18 @@ public class MainActivity extends FragmentActivity {
 			changeType();
 			return true;
 		} else if(itemId == R.id.filter) {
-			generateFilters();
-			return true;
-		} else if(itemId == R.id.about) {
-			showAbout();
-			return true;
-		} else if(itemId == R.id.presetTab) {
+            generateFilters();
+            return true;
+        } else if(itemId == R.id.refresh) {
+            doRefresh();
+            return true;
+        } else if(itemId == R.id.about) {
+            showAbout();
+            return true;
+        } else if(itemId == R.id.disclaimer) {
+            showDisclaimer();
+            return true;
+        } else if(itemId == R.id.presetTab) {
             showPreSetsOpts();
             return true;
         } else if(itemId == R.id.radarView) {
@@ -198,7 +215,7 @@ public class MainActivity extends FragmentActivity {
     	
     	TextView about_content = (TextView) dialog.findViewById(R.id.about_content);
     	about_content.setText(	
-            "CariCOOS Coastal Weather app available for Android � is an ad-free app providing users an " +
+            "CariCOOS Coastal Weather app available for Android is an ad-free app providing users an " +
             "integrated view of ocean conditions in the US Caribbean.\n\n" +
             "This app provides reliable information including: \n" +
             "\t\t - Real time life buoy data (waves, wind and currents). \n" +
@@ -232,6 +249,39 @@ public class MainActivity extends FragmentActivity {
 		});
     	dialog.show();
     }
+
+    public void showDisclaimer() {
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.disclaimer);
+        dialog.setTitle("Disclaimer");
+
+        TextView about_content = (TextView) dialog.findViewById(R.id.disclaimer_content);
+        about_content.setText(
+                "This information is presented as a good faith service to the scientific community, " +
+                        "the public in general and to our colleagues and friends. The information, " +
+                        "views and opinions herein provided should not be viewed as formally" +
+                        " accurate scientific data and/or advice that can be relied upon without " +
+                        "proper verification and validation. This service should not be construed " +
+                        "as a substitute for specific data that could be obtained though official " +
+                        "sources. If any inaccuracy is observed, please inform CaRA as soon as " +
+                        "possible for verification and correction, as necessary. Use of and " +
+                        "reliance upon the information provided in this web site signifies that its " +
+                        "user(s) understands and has(ve) accepted of the above mentioned " +
+                        "caveat and conditions. The location of each observation instrument in " +
+                        "this application does not necessarily represent actual location."
+        );
+
+        Button close_about_btn = (Button) dialog.findViewById(R.id.close_disclaimer);
+        close_about_btn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
     
     private void setUpMapIfNeeded() {
         if (googleMap == null) {
@@ -249,8 +299,6 @@ public class MainActivity extends FragmentActivity {
     private void setMapPreConfig() {
         if (googleMap != null) {
                 String mapPreSet = setPreSet();
-
-                Log.i("PreConfig", "" + mapPreSet);
 
                 String[] parts = mapPreSet.split(":");
                 String mapTypePreSet = parts[0];
@@ -285,12 +333,10 @@ public class MainActivity extends FragmentActivity {
 
         File preSet_file = getFileStreamPath("preSet.txt");
         if(!preSet_file.exists()){
-            Log.i("FILE", "Doesnt exist");
             String preSetVar = "1:1:";
             createFile("preSet.txt", preSetVar);
             return preSetVar;
         } else {
-            Log.i("FILE", "Exist");
             return readFile("preSet.txt");
         }
     }
@@ -379,6 +425,10 @@ public class MainActivity extends FragmentActivity {
     	TextView current_speed = (TextView) dialog.findViewById(R.id.current_speed);
     	TextView current_direction = (TextView) dialog.findViewById(R.id.current_direction);
 
+        ImageView wave_icon = (ImageView) dialog.findViewById(R.id.wave_direction_img);
+        ImageView wind_icon = (ImageView) dialog.findViewById(R.id.wind_direction_img);
+        ImageView current_icon = (ImageView) dialog.findViewById(R.id.current_direction_img);
+
         Button closeButton = (Button) dialog.findViewById(R.id.close_popup);
         closeButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -405,42 +455,47 @@ public class MainActivity extends FragmentActivity {
     	try {
 			JSONObject Bouy = getBouy(buoy);
 			try {
-			wave_direction.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Mean Wave Direction (0m)")))));
+                String wave_dir = roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Mean Wave Direction (0m)"))));
+                wave_direction.setText(wave_dir);
+                generateDirectionIcon(Integer.parseInt(wave_dir), wave_icon);
 			} catch(JSONException e) {}
 			try {
-	    	wave_height.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Significant Wave Height (0m)"))*3.28084)));
+	    	    wave_height.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Significant Wave Height (0m)"))*3.28084)));
 			} catch(JSONException e) {}
 	    	try {
 	    		dominant_Wave_Period.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Dominant Wave Period (0m)")))));
 	    	} catch(JSONException e) {}
 	    	try {
-	    	wind_speed.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Wind Speed (-4m)")))));
+	    	    wind_speed.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Wind Speed (-4m)")))));
 	    	} catch(JSONException e) {}
 	    	try {
-	    	wind_gust.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Wind Gust (-4m)")))));
+	    	    wind_gust.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Wind Gust (-4m)")))));
 	    	} catch(JSONException e) {}
 	    	try {
-	    		
-	    	wind_direction.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Wind Direction (-4m)")))));
-	    	} catch(JSONException e) {}
+                String wind_dir = roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Wind Direction (-4m)"))));
+                wind_direction.setText(wind_dir);
+                generateDirectionIcon(Integer.parseInt(wind_dir), wind_icon);
+            } catch(JSONException e) {}
 	    	try {
 	    		if(!Bouy.getString("Air Temperature (-3m)").contains("0.000"))
-	    	air_temperature.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Air Temperature (-3m)")))));
+	    	        air_temperature.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Air Temperature (-3m)")))));
 	    	} catch(JSONException e) {}
 	    	try {
-	    	salinity.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Salinity (1m)")))));
+	    	    salinity.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Salinity (1m)")))));
 	    	} catch(JSONException e) {}
 	    	try {
-	    	water_temperature.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Water Temperature (1m)")))));
+	    	    water_temperature.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Water Temperature (1m)")))));
 	    	} catch(JSONException e) {}
 	    	try {
-	    	atmospheric_pressure.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Barometric Pressure (-3m)")))));
+	    	    atmospheric_pressure.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Barometric Pressure (-3m)")))));
 	    	} catch(JSONException e) {}
 	    	try {
-	    	current_speed.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Current Speed (2m)")))));
+	    	    current_speed.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Current Speed (2m)")))));
 	    	} catch(JSONException e) {}
 	    	try {
-	    	current_direction.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Current Direction (2m)")))));
+                String current_dir = roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Current Direction (2m)"))));
+                current_direction.setText(current_dir);
+                generateDirectionIcon(Integer.parseInt(current_dir), current_icon);
 	    	} catch(JSONException e) {}
 	    	
 	    	//dataDate set
@@ -453,8 +508,7 @@ public class MainActivity extends FragmentActivity {
 	    	try {
 				dateCurrentData.setText(fixDateTime(Bouy.getString("date"), Bouy.getString("time")));
 				} catch(JSONException e) {}
-	    	
-	    	
+
 	    	//Compare dates
 			Calendar c = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -496,8 +550,10 @@ public class MainActivity extends FragmentActivity {
     	dialog.setCancelable(true);    	
     	dialog.setContentView(R.layout.filter);
     	dialog.setTitle("Platform Filters");
-    	caricoos_check = (CheckBox) dialog.findViewById(R.id.caricoos_check);
-    	wflow_check = (CheckBox) dialog.findViewById(R.id.wflow_check);
+
+        caricoos_check = (CheckBox) dialog.findViewById(R.id.caricoos_check);
+        wflow_check = (CheckBox) dialog.findViewById(R.id.wflow_check);
+        forecast_check = (CheckBox) dialog.findViewById(R.id.forecast_check);
 
     	if(caricoos_checked) {
     		caricoos_check.setChecked(true);
@@ -510,6 +566,12 @@ public class MainActivity extends FragmentActivity {
 		} else {
 			wflow_check.setChecked(false);
 		}
+
+        if(forecast_checked) {
+            forecast_check.setChecked(true);
+        } else {
+            forecast_check.setChecked(false);
+        }
 
     	Button filter_button = (Button) dialog.findViewById(R.id.filter_button);
     	filter_button.setOnClickListener(new OnClickListener() {
@@ -530,6 +592,14 @@ public class MainActivity extends FragmentActivity {
 		    	} else {
 		    		wflow_checked = false;
 		    	}
+
+                if(forecast_check.isChecked()) {
+                    filters.add("forecast");
+                    forecast_checked = true;
+                } else {
+                    forecast_checked = false;
+                }
+
 				setMarkersInvisible();
 		    	createFilter();
 		    	dialog.dismiss();
@@ -639,6 +709,13 @@ public class MainActivity extends FragmentActivity {
     public void createFilter() {
     	for(int i = 0 ; i < filters.size() ; i++) {
     		String filter = filters.get(i);
+
+            if(filter.equals("forecast")) {
+                for(int j = 0 ; j < markers_forecast.size() ; j++) {
+                    markers_forecast.get(j).setVisible(true);
+                }
+            }
+
     		for(int j = 0 ; j < markers.size() ; j++) {
     			if(((markers_keys.get(j)).toString()).equals(filter)) {
     				markers.get(j).setVisible(true);
@@ -646,11 +723,33 @@ public class MainActivity extends FragmentActivity {
     		}
     	}
     }
-    
+
+    private void generateInitialFilters() {
+        filters.clear();
+        if(caricoos_checked) {
+            filters.add("caricoos");
+        }
+
+        if(wflow_checked) {
+            filters.add("wflow");
+            filters.add("ndbc");
+        }
+
+        if(forecast_checked) {
+            filters.add("forecast");
+        }
+
+        setMarkersInvisible();
+        createFilter();
+    }
+
     public void setMarkersInvisible() {
 		for(int i = 0 ; i < markers.size() ; i++) {
 			(markers.get(i)).setVisible(false);
 		}
+        for(int i = 0 ; i < markers_forecast.size() ; i++) {
+            (markers_forecast.get(i)).setVisible(false);
+        }
 	}
     
     @SuppressLint("SimpleDateFormat")
@@ -672,13 +771,11 @@ public class MainActivity extends FragmentActivity {
 			Calendar c = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			String ThisDate = sdf.format(c.getTime());
-            Log.i("DATE1", ""+ThisDate);
 
             try{
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 Date date1 = formatter.parse(ThisDate);
                 Date date2 = formatter.parse(object.getString("date"));
-                Log.i("DATE2", ""+date2.toString());
 
                 if (date1.compareTo(date2) > 0) {
 	       		     isUpdate = false;                          
@@ -705,7 +802,7 @@ public class MainActivity extends FragmentActivity {
                 Marker marker = googleMap.addMarker(new MarkerOptions()
                         .position(location)
                         .title(objName)
-                        .snippet("Press box for more info")
+                        .snippet("Press for more info")
                         .icon(BitmapDescriptorFactory.fromResource(icon)));
                 markers.add(marker);
                 markers_keys.add(objPlatform);
@@ -730,19 +827,13 @@ public class MainActivity extends FragmentActivity {
                 Marker marker = googleMap.addMarker(new MarkerOptions()
                         .position(location)
                         .title(objName)
-                        .snippet("Press box for more info")
+                        .snippet("Press for more info")
                         .icon(BitmapDescriptorFactory.fromResource(icon)));
                 markers.add(marker);
                 markers_keys.add(objPlatform);
             }
 	    }
-	    	googleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
-	    		@Override
-				public void onInfoWindowClick(com.google.android.gms.maps.model.Marker marker) {
-                    if(!(marker.getSnippet().toString()).equals("Instrument out of order")) {
-                        createPopUp(marker.getTitle(),0);
-                    }
-	    		}});
+
     }
 
     public void createMarkersForecast(JSONObject object) {
@@ -757,29 +848,36 @@ public class MainActivity extends FragmentActivity {
             LAT = object.getString("LAT");
             LON = object.getString("LON");
 
-            final String name = NAME;
             LatLng location = new LatLng(Double.valueOf(LAT), Double.valueOf(LON));
             Marker marker = googleMap.addMarker(new MarkerOptions()
                     .position(location)
-                    .title(FANCYNAME)
-                    .snippet("Press box for more info")
+                    .title(FANCYNAME + " ("+ NAME +")")
+                    .snippet("Press to get forecast")
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.buoy_blue)));
-
-
-            googleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
-                @Override
-                public void onInfoWindowClick(com.google.android.gms.maps.model.Marker marker) {
-                    Intent i = new Intent(getApplicationContext(), forecast.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("url", name);
-                    i.putExtras(bundle);
-                    startActivity(i);
-                }});
 
             markers_forecast.add(marker);
             markers_keys_forecast.add("forecast");
 
         } catch (JSONException e) {	}
+    }
+
+    private void setInfoWindow() {
+        googleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(com.google.android.gms.maps.model.Marker marker) {
+                if(marker.getSnippet().toString().equals("Press to get forecast")) {
+                    String[] name = ((marker.getTitle()).toString()).split("\\(|\\)");
+                    Intent i = new Intent(getApplicationContext(), forecast.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("url", name[1]);
+                    i.putExtras(bundle);
+                    startActivity(i);
+                } else {
+                    if (!(marker.getSnippet().toString()).equals("Instrument out of order")) {
+                        createPopUp(marker.getTitle(), 0);
+                    }
+                }
+            }});
     }
 
     private String roundZero(String num){
@@ -798,6 +896,27 @@ public class MainActivity extends FragmentActivity {
     		newNum += num.charAt(j);
     	}
     	return newNum;
+    }
+
+    private void generateDirectionIcon(int dir, ImageView icon) {
+        if(dir > 315 + 22.5 && dir <= 360 ||
+                dir >= 0 && dir <= 45 - 22.5) {                 //North
+            icon.setImageResource(R.drawable.north);
+        } else if(dir > 0 + 22.5 && dir <= 90 - 22.5) {         //North East
+            icon.setImageResource(R.drawable.north_east);
+        } else if(dir > 45 + 22.5 && dir <= 135 - 22.5) {       //East
+            icon.setImageResource(R.drawable.east);
+        } else if(dir > 90 + 22.5 && dir <= 180 - 22.5) {       //South East
+            icon.setImageResource(R.drawable.south_east);
+        } else if(dir > 135 + 22.5 && dir <= 225 - 22.5) {      //South
+            icon.setImageResource(R.drawable.south);
+        } else if(dir > 180 + 22.5 && dir <= 270 - 22.5) {      //South West
+            icon.setImageResource(R.drawable.south_west);
+        } else if(dir > 225 + 22.5 && dir <= 3.15 - 22.5 ) {    //West
+            icon.setImageResource(R.drawable.west);
+        } else {                                                //North West
+            icon.setImageResource(R.drawable.north_west);
+        }
     }
 
     private String fixDateTime(String numDate, String numTime){
@@ -851,6 +970,13 @@ public class MainActivity extends FragmentActivity {
         File preSet_file = getFileStreamPath("preSet.txt");
         preSet_file.delete();
         createFile("preSet.txt", newPreset);
-        Log.i("NEW_PRESET", "" + newPreset);
+    }
+
+    private void doRefresh(){
+        Intent i = new Intent(getApplicationContext(), splashActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("delay", "0");
+        i.putExtras(bundle);
+        startActivity(i);
     }
 }

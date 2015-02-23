@@ -1,19 +1,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/type"
-        android:title="Map Type"
-        android:icon="@drawable/type"
-        android:showAsAction="ifRoom"/>
-    <item
         android:id="@+id/filter"
         android:title="Buoy Filter"
         android:icon="@drawable/filter"
         android:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/refresh"
+        android:title="Refresh Data"
+        android:icon="@drawable/refresh"
+        android:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/radarView"
-        android:title="Doppler Radar"/>
+        android:title="Doppler Radar"
+        android:icon="@drawable/radar"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/type"
+        android:title="Map Type"
+        android:icon="@drawable/type"
+        android:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/presetTab"
@@ -22,6 +31,10 @@
     <item
         android:id="@+id/about"
         android:title="About"/>
+
+    <item
+        android:id="@+id/disclaimer"
+        android:title="Disclaimer"/>
 
 </menu>
 <!-- From: file:/Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/src/main/res/menu/main.xml -->

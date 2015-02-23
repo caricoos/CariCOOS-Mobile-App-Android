@@ -51,7 +51,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="CLOSE"
+        android:text="close"
         android:id="@+id/close_about" />
 </LinearLayout>
 

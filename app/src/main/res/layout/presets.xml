@@ -28,7 +28,7 @@
         <CheckBox android:id="@+id/WEST_preset_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WEST Coast"
+            android:text="West Coast"
             android:checked="false"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"/>
@@ -67,7 +67,7 @@
         android:id="@+id/presets_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="DONE"
+        android:text="close"
         android:paddingRight="20dp"
         android:paddingLeft="20dp"/>
 

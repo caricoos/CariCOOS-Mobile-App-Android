@@ -97,16 +97,10 @@
             android:text=""
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:checked="true"/>
+            android:checked="false"/>
 
         </RelativeLayout>
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="#80000000"/>
 
     </LinearLayout>
 
@@ -114,7 +108,7 @@
         android:id="@+id/filter_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="FILTER"
+        android:text="Apply Filters"
         android:paddingRight="20dp"
         android:paddingLeft="20dp"/>
 

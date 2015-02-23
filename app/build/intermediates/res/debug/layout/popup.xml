@@ -60,9 +60,54 @@
                                     android:layout_height="match_parent"
                                     android:paddingLeft="10dp"
                                     android:textColor="#006600"
-                                    android:text="2014/03/02 22:15:19"/>
+                                    android:text=""/>
                             </LinearLayout>
 
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:gravity="center_vertical">
+                                <TextView
+                                    android:id="@+id/wave_direction_label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textStyle="bold"
+                                    android:text="Wave Direction:"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true" />
+
+                                <TextView
+                                    android:id="@+id/wave_direction"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textColor="#DF013A"
+                                    android:text="N/A"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@+id/wave_direction_label"
+                                    android:layout_toEndOf="@+id/wave_direction_label" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="°"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@+id/wave_direction"
+                                    android:layout_toEndOf="@+id/wave_direction" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/wave_direction_img"
+                                    android:src="@drawable/empty"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true" />
+                            </RelativeLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -72,18 +117,24 @@
                                 <TextView
                                     android:id="@+id/wave_height_label"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
-                                    android:text="Significant Wave Height (ft):"
+                                    android:text="Significant Wave Height:"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/wave_height"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textColor="#DF013A"
-                                    android:text="No Information"/>
+                                    android:text="N/A"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="ft."/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -93,36 +144,23 @@
                                 <TextView
                                     android:id="@+id/mean_wave_period_label"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textStyle="bold"
-                                    android:text="Dominant Wave Period (sec):"/>
+                                    android:text="Dominant Wave Period:"/>
                                 <TextView
                                     android:id="@+id/mean_wave_period"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:paddingLeft="10dp"
-                                    android:textColor="#DF013A"
-                                    android:text="No Information"/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp">
-                                <TextView
-                                    android:id="@+id/wave_direction_label"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:paddingLeft="10dp"
-                                    android:textStyle="bold"
-                                    android:text="Wave Direction (degrees °):"/>
-                                <TextView
-                                    android:id="@+id/wave_direction"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textColor="#DF013A"
-                                    android:text="No Information"/>
+                                    android:text="N/A"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="sec."/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -150,6 +188,29 @@
                                     android:textColor="#006600"
                                     android:visibility="gone"
                                     android:text="2014/03/02 22:15:19"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:layout_gravity="right"
+                                android:layout_margin="10dp"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text="N/A"
+                                    android:textColor="#DF013A"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text=": No information available"/>
                             </LinearLayout>
 
 
@@ -183,8 +244,54 @@
                                     android:layout_height="match_parent"
                                     android:paddingLeft="10dp"
                                     android:textColor="#006600"
-                                    android:text="2014/03/02 22:15:19"/>
+                                    android:text=""/>
                             </LinearLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:gravity="center_vertical">
+                                <TextView
+                                    android:id="@+id/wind_direction_label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textStyle="bold"
+                                    android:text="Wind Direction:"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true" />
+
+                                <TextView
+                                    android:id="@+id/wind_direction"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textColor="#DF013A"
+                                    android:text="N/A"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@+id/wind_direction_label"
+                                    android:layout_toEndOf="@+id/wind_direction_label" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="°"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@+id/wind_direction"
+                                    android:layout_toEndOf="@+id/wind_direction" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/wind_direction_img"
+                                    android:src="@drawable/empty"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true" />
+                            </RelativeLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -196,14 +303,20 @@
                                     android:layout_height="match_parent"
                                     android:paddingLeft="10dp"
                                     android:textStyle="bold"
-                                    android:text="Wind Speed (kt):"/>
+                                    android:text="Wind Speed:"/>
                                 <TextView
                                     android:id="@+id/wind_speed"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textColor="#DF013A"
-                                    android:text="No Information"/>
+                                    android:text="N/A"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="kt"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -213,37 +326,22 @@
                                 <TextView
                                     android:id="@+id/wind_gust_label"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textStyle="bold"
-                                    android:text="Wind Gust (kt): "/>
+                                    android:text="Wind Gust: "/>
                                 <TextView
                                     android:id="@+id/wind_gust"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:paddingLeft="10dp"
-                                    android:textColor="#DF013A"
-                                    android:text="No Information"/>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp">
-                                <TextView
-                                    android:id="@+id/wind_direction_label"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:paddingLeft="10dp"
-                                    android:textStyle="bold"
-                                    android:text="Wind Direction (degrees °):"/>
-                                <TextView
-                                    android:id="@+id/wind_direction"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textColor="#DF013A"
-                                    android:text="No Information"/>
+                                    android:text="N/A"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="kt"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -253,17 +351,22 @@
                                 <TextView
                                     android:id="@+id/air_temperature_label"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textStyle="bold"
-                                    android:text="Air Temperature (°C):"/>
+                                    android:text="Air Temperature:"/>
                                 <TextView
                                     android:id="@+id/air_temperature"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textColor="#DF013A"
-                                    android:text="No Information"/>
+                                    android:text="N/A"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="°C"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -273,17 +376,22 @@
                                 <TextView
                                     android:id="@+id/salinity_label"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textStyle="bold"
                                     android:text="Salinity (psu):"/>
                                 <TextView
                                     android:id="@+id/salinity"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textColor="#DF013A"
-                                    android:text="No Information"/>
+                                    android:text="N/A"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="psu"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -293,17 +401,22 @@
                                 <TextView
                                     android:id="@+id/water_temperature_label"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textStyle="bold"
-                                    android:text="Water Temperature (degrees °):"/>
+                                    android:text="Water Temperature:"/>
                                 <TextView
                                     android:id="@+id/water_temperature"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textColor="#DF013A"
-                                    android:text="No Information"/>
+                                    android:text="N/A"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="°"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -313,17 +426,17 @@
                                 <TextView
                                     android:id="@+id/atmospheric_pressure_label"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textStyle="bold"
                                     android:text="Atmospheric Pressure:"/>
                                 <TextView
                                     android:id="@+id/atmospheric_pressure"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textColor="#DF013A"
-                                    android:text="No Information"/>
+                                    android:text="N/A"/>
                             </LinearLayout>
 
 
@@ -352,6 +465,30 @@
                                     android:textColor="#006600"
                                     android:text="2014/03/02 22:15:19"/>
                             </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:layout_gravity="right"
+                                android:layout_margin="10dp"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text="N/A"
+                                    android:textColor="#DF013A"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text=": No information available"/>
+                            </LinearLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -361,28 +498,6 @@
                             android:contentDescription="Current"
                             android:orientation="vertical">
 
-                          <!--    <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp">
-                                <TextView
-                                    android:id="@+id/surface_current_label"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:paddingLeft="10dp"
-                                    android:textStyle="bold"
-                                    android:text="Surface Current:"/>
-                                <TextView
-                                    android:id="@+id/surface_current"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:paddingLeft="10dp"
-                                    android:textColor="#DF013A"
-                                    android:text="No Information"/>
-                            </LinearLayout>
-                            -->
-
-                             <!-- Bergo add a additoinal linearLayout for the data date -->
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -407,6 +522,53 @@
                                     android:text="2014/03/02 22:15:19"/>
                             </LinearLayout>
 
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:gravity="center_vertical">
+                                <TextView
+                                    android:id="@+id/current_direction_label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textStyle="bold"
+                                    android:text="Surface Current Direction:"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true" />
+
+                                <TextView
+                                    android:id="@+id/current_direction"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textColor="#DF013A"
+                                    android:text="N/A"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@+id/current_direction_label"
+                                    android:layout_toEndOf="@+id/current_direction_label" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="°"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@+id/current_direction"
+                                    android:layout_toEndOf="@+id/current_direction" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/current_direction_img"
+                                    android:src="@drawable/empty"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true" />
+
+                            </RelativeLayout>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -414,39 +576,23 @@
                                 <TextView
                                     android:id="@+id/current_speed_label"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textStyle="bold"
-                                    android:text="Surface Current Speed (Kts):"/>
+                                    android:text="Surface Current Speed:"/>
                                 <TextView
                                     android:id="@+id/current_speed"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:paddingLeft="10dp"
-                                    android:textColor="#DF013A"
-                                    android:text="No Information"/>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp">
-                                <TextView
-                                    android:id="@+id/current_direction_label"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:paddingLeft="10dp"
-                                    android:textStyle="bold"
-                                    android:text="Surface Current Direction (deg):"/>
-                                <TextView
-                                    android:id="@+id/current_direction"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:paddingLeft="10dp"
                                     android:textColor="#DF013A"
-                                    android:text="No Information"/>
+                                    android:text="N/A"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="kts"/>
                             </LinearLayout>
-
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -472,13 +618,37 @@
                                     android:textColor="#006600"
                                     android:text="2014/03/02 22:15:19"/>
                             </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:layout_gravity="right"
+                                android:layout_margin="10dp"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text="N/A"
+                                    android:textColor="#DF013A"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="10dp"
+                                    android:text=": No information available"/>
+                            </LinearLayout>
+
                         </LinearLayout>
 
                 </FrameLayout>
                 <Button
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="CLOSE"
+                    android:text="close"
                     android:id="@+id/close_popup" />
             </LinearLayout>
 
