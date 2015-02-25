@@ -1,33 +1,37 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:background="@drawable/splash">
 
 	<ImageView
-	    android:id="@+id/imageView1"
+	    android:id="@+id/myimg"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignParentBottom="true"
-	    android:layout_alignParentRight="true"
-	    android:src="@drawable/caribean" />
-
-	<ImageView
-	    android:id="@+id/myimg"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="172dp"
-	    android:background="@drawable/caricoos_banner"
+        android:background="@drawable/caricoos_banner"
 	    android:orientation="vertical"
-	    android:scaleType="fitXY" 
-	    />
+	    android:scaleType="fitXY"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 	<ProgressBar
 	    android:id="@+id/progressBar1"
 	    style="?android:attr/progressBarStyleSmall"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/myimg"
-	    android:layout_centerHorizontal="true" />
+        android:layout_marginTop="204dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_marginBottom="27dp"
+        android:src="@drawable/coos_logo"
+        android:layout_alignBottom="@+id/progressBar1"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout><!-- From: file:/Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/src/main/res/layout/splash.xml -->
