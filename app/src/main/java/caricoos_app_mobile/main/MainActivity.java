@@ -60,21 +60,26 @@ public class MainActivity extends FragmentActivity {
     private String mapType;
 	private JSONArray data;
     private JSONArray data_forecast;
+    private JSONArray data_forecast2;
     private int mapLocationPreConfig;
 
 	ArrayList<Marker> markers = new ArrayList<Marker>();
     ArrayList<String> markers_keys = new ArrayList<String>();
     ArrayList<Marker> markers_forecast = new ArrayList<Marker>();
     ArrayList<String> markers_keys_forecast= new ArrayList<String>();
+    ArrayList<Marker> markers_forecast2 = new ArrayList<Marker>();
+    ArrayList<String> markers_keys_forecast2 = new ArrayList<String>();
 	ArrayList<String> filters = new ArrayList<String>();
 
 	CheckBox caricoos_check;
 	CheckBox wflow_check;
     CheckBox forecast_check;
+    CheckBox forecast2_check;
 
-	boolean caricoos_checked = true;
-	boolean wflow_checked = true;
+	boolean caricoos_checked = false;
+	boolean wflow_checked = false;
     boolean forecast_checked = false;
+    boolean forecast2_checked = false;
 
     private CheckBox pr_preconfig;
     private CheckBox west_preconfig;
@@ -123,12 +128,23 @@ public class MainActivity extends FragmentActivity {
 
         try {
             data_forecast = new JSONArray(readFile("data_forecast.json"));
-        } catch (JSONException e) { e.printStackTrace();
-            }
+        } catch (JSONException e) { e.printStackTrace(); }
 
         try {
             for(int i = 0 ; i< data_forecast.length() ; i++){
                 createMarkersForecast(data_forecast.getJSONObject(i));
+            }
+
+
+        } catch (Exception e) { e.printStackTrace(); }
+
+        try {
+            data_forecast2 = new JSONArray(readFile("data_forecast_ofs.json"));
+        } catch (JSONException e) { e.printStackTrace(); }
+
+        try {
+            for(int i = 0 ; i< data_forecast2.length() ; i++){
+                createMarkersForecast2(data_forecast2.getJSONObject(i));
             }
 
 
@@ -153,10 +169,8 @@ public class MainActivity extends FragmentActivity {
         });
 
         setInfoWindow();
-
         generateInitialFilters();
-
-
+        setPreSetFilters();
     }
 
     protected void onStart() {
@@ -330,7 +344,6 @@ public class MainActivity extends FragmentActivity {
     }
 
     private String setPreSet(){
-
         File preSet_file = getFileStreamPath("preSet.txt");
         if(!preSet_file.exists()){
             String preSetVar = "1:1:";
@@ -338,6 +351,17 @@ public class MainActivity extends FragmentActivity {
             return preSetVar;
         } else {
             return readFile("preSet.txt");
+        }
+    }
+
+    private String setPreSetFilters(){
+        File preSetFilter_file = getFileStreamPath("preSetFilters.txt");
+        if(!preSetFilter_file.exists()){
+            String preSetVarFilter = "1:1:0:1:";
+            createFile("preSetFilters.txt", preSetVarFilter);
+            return preSetVarFilter;
+        } else {
+            return readFile("preSetFilters.txt");
         }
     }
 
@@ -554,6 +578,7 @@ public class MainActivity extends FragmentActivity {
         caricoos_check = (CheckBox) dialog.findViewById(R.id.caricoos_check);
         wflow_check = (CheckBox) dialog.findViewById(R.id.wflow_check);
         forecast_check = (CheckBox) dialog.findViewById(R.id.forecast_check);
+        forecast2_check = (CheckBox) dialog.findViewById(R.id.forecast2_check);
 
     	if(caricoos_checked) {
     		caricoos_check.setChecked(true);
@@ -573,14 +598,24 @@ public class MainActivity extends FragmentActivity {
             forecast_check.setChecked(false);
         }
 
+        if(forecast2_checked) {
+            forecast2_check.setChecked(true);
+        } else {
+            forecast2_check.setChecked(false);
+        }
+
     	Button filter_button = (Button) dialog.findViewById(R.id.filter_button);
     	filter_button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				filters.clear();
+
+                int coos = 0, wind = 0, forecast1 = 0, forecast2 = 0;
+
 				if(caricoos_check.isChecked()) {
 		        	filters.add("caricoos");
 		        	caricoos_checked = true;
+                    coos = 1;
 		        } else {
 		        	caricoos_checked = false;
 		        }
@@ -589,6 +624,7 @@ public class MainActivity extends FragmentActivity {
 		        	filters.add("wflow");
 		    		wflow_checked = true;
 		    		filters.add("ndbc");
+                    wind = 1;
 		    	} else {
 		    		wflow_checked = false;
 		    	}
@@ -596,11 +632,22 @@ public class MainActivity extends FragmentActivity {
                 if(forecast_check.isChecked()) {
                     filters.add("forecast");
                     forecast_checked = true;
+                    forecast1 = 1;
                 } else {
                     forecast_checked = false;
                 }
 
-				setMarkersInvisible();
+                if(forecast2_check.isChecked()) {
+                    filters.add("forecast2");
+                    forecast2_checked = true;
+                    forecast2 = 1;
+                } else {
+                    forecast2_checked = false;
+                }
+
+                updatePreSetsFilters(coos, wind, forecast1, forecast2);
+
+                setMarkersInvisible();
 		    	createFilter();
 		    	dialog.dismiss();
 			}
@@ -640,9 +687,7 @@ public class MainActivity extends FragmentActivity {
                     mapLocationPreConfig = 1;
                     updatePreSets(-1,mapLocationPreConfig);
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(18.450927, -66.109972), 8));
-                } else {
-                    //pr_preconfig.setChecked(true);
-                   // Toast.makeText(getApplicationContext(), "PR Called", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 }
             }
         });
@@ -657,9 +702,7 @@ public class MainActivity extends FragmentActivity {
                     mapLocationPreConfig = 2;
                     updatePreSets(-1,mapLocationPreConfig);
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(18.251524, -67.028961), 10));
-                } else {
-                    //west_preconfig.setChecked(true);
-                   // Toast.makeText(getApplicationContext(), "WEST Called", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 }
             }
         });
@@ -674,8 +717,7 @@ public class MainActivity extends FragmentActivity {
                     mapLocationPreConfig = 3;
                     updatePreSets(-1,mapLocationPreConfig);
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(18.430108,-66.108856), 12));
-                } else {
-                    //sj_preconfig.setChecked(true);
+                    dialog.dismiss();
                 }
             }
         });
@@ -690,8 +732,7 @@ public class MainActivity extends FragmentActivity {
                     mapLocationPreConfig = 4;
                     updatePreSets(-1,mapLocationPreConfig);
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(18.025751,-64.761658), 9));
-                } else {
-                    //vi_preconfig.setChecked(true);
+                    dialog.dismiss();
                 }
             }
         });
@@ -716,6 +757,12 @@ public class MainActivity extends FragmentActivity {
                 }
             }
 
+            if(filter.equals("forecast2")) {
+                for(int j = 0 ; j < markers_forecast2.size() ; j++) {
+                    markers_forecast2.get(j).setVisible(true);
+                }
+            }
+
     		for(int j = 0 ; j < markers.size() ; j++) {
     			if(((markers_keys.get(j)).toString()).equals(filter)) {
     				markers.get(j).setVisible(true);
@@ -725,7 +772,30 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void generateInitialFilters() {
+
+        String filtersPreSet = setPreSetFilters();
+
+        String[] parts = filtersPreSet.split(":");
+        String coos = parts[0];
+        String wind = parts[1];
+        String forecast1 = parts[2];
+        String forecast2 = parts[3];
+
+        if(Integer.parseInt(coos) == 1) {
+            caricoos_checked = true;
+        }
+        if(Integer.parseInt(wind) == 1) {
+            wflow_checked = true;
+        }
+        if(Integer.parseInt(forecast1) == 1) {
+            forecast_checked = true;
+        }
+        if(Integer.parseInt(forecast2) == 1) {
+            forecast2_checked = true;
+        }
+
         filters.clear();
+
         if(caricoos_checked) {
             filters.add("caricoos");
         }
@@ -739,6 +809,10 @@ public class MainActivity extends FragmentActivity {
             filters.add("forecast");
         }
 
+        if(forecast2_checked) {
+            filters.add("forecast2");
+        }
+
         setMarkersInvisible();
         createFilter();
     }
@@ -749,6 +823,9 @@ public class MainActivity extends FragmentActivity {
 		}
         for(int i = 0 ; i < markers_forecast.size() ; i++) {
             (markers_forecast.get(i)).setVisible(false);
+        }
+        for(int i = 0 ; i < markers_forecast2.size() ; i++) {
+            (markers_forecast2.get(i)).setVisible(false);
         }
 	}
     
@@ -861,6 +938,31 @@ public class MainActivity extends FragmentActivity {
         } catch (JSONException e) {	}
     }
 
+    public void createMarkersForecast2(JSONObject object) {
+        String NAME = "";
+        String FANCYNAME = "";
+        String LAT = "";
+        String LON = "";
+
+        try {
+            NAME = object.getString("NAME");
+            FANCYNAME = object.getString("FANCYNAME");
+            LAT = object.getString("LAT");
+            LON = object.getString("LON");
+
+            LatLng location = new LatLng(Double.valueOf(LAT), Double.valueOf(LON));
+            Marker marker = googleMap.addMarker(new MarkerOptions()
+                    .position(location)
+                    .title(FANCYNAME + " ("+ NAME +")")
+                    .snippet("Press to get forecast")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.buoy_blue)));
+
+            markers_forecast2.add(marker);
+            markers_keys_forecast2.add("forecast2");
+
+        } catch (JSONException e) {	}
+    }
+
     private void setInfoWindow() {
         googleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
             @Override
@@ -948,12 +1050,13 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void updatePreSets(int mapType, int mapLocation) {
-        //Sorry. is 3:54AM and we have a deadline.
+        //Documentation of this function can be found in http://www.marroneo.org/sonlas3am
+
         String newPreset = "";
+
         if(mapType > 0) {
             String presetTemp = readFile("preSet.txt");
             String[] parts = presetTemp.split(":");
-            String part1 = parts[0];
             String part2 = parts[1];
 
             newPreset = mapType + ":" + part2 + ":";
@@ -963,13 +1066,21 @@ public class MainActivity extends FragmentActivity {
             String presetTemp = readFile("preSet.txt");
             String[] parts = presetTemp.split(":");
             String part1 = parts[0];
-            String part2 = parts[1];
 
             newPreset = part1 + ":" + mapLocation + ":";
+
         }
+
         File preSet_file = getFileStreamPath("preSet.txt");
         preSet_file.delete();
         createFile("preSet.txt", newPreset);
+    }
+
+    public void updatePreSetsFilters(int coos, int wind, int forecast1, int forecast2) {
+        String newPreset = coos + ":" + wind + ":" + forecast1 + ":" + forecast2 + ":";
+        File preSet_file = getFileStreamPath("preSetFilters.txt");
+        preSet_file.delete();
+        createFile("preSetFilters.txt", newPreset);
     }
 
     private void doRefresh(){

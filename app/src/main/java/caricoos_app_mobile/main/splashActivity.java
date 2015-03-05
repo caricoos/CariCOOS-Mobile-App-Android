@@ -26,8 +26,10 @@ public class splashActivity extends Activity {
     private static int SPLASH_TIME_OUT = 1000;
     public String DATA;
     public String DATA_FORECAST;
+    public String DATA_FORECAST_ofs;
     public boolean dataReady = true;
     public boolean dataReady_forecast = true;
+    public boolean dataReady_forecast_ofs = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +74,17 @@ public class splashActivity extends Activity {
 
             DATA_FORECAST = fetchObj_forecast.postData();
 
-            if(DATA.isEmpty()) {
+            if(DATA_FORECAST.isEmpty()) {
                 dataReady_forecast = false;
+            }
+
+            fetch fetchObj_forecast_ofs =
+                    new fetch( /*URL*/ "http://caricoos.org/Swan1.json");
+
+            DATA_FORECAST_ofs = fetchObj_forecast_ofs.postData();
+
+            if(DATA_FORECAST_ofs.isEmpty()) {
+                dataReady_forecast_ofs = false;
             }
 
             return null;
@@ -110,6 +121,17 @@ public class splashActivity extends Activity {
                     data_file.delete();
                 }
                 createFile("data_forecast.json", DATA_FORECAST);
+            }
+
+            if (!dataReady_forecast_ofs /*Verify if data is ready*/) {
+                Toast.makeText(getApplicationContext(),
+                        "There was na network error.", Toast.LENGTH_LONG).show();
+            } else {
+                File data_file = getFileStreamPath("data_forecast_ofs.json");
+                if(data_file.exists()){
+                    data_file.delete();
+                }
+                createFile("data_forecast_ofs.json", DATA_FORECAST_ofs);
             }
 
             Intent i = new Intent(splashActivity.this, MainActivity.class);

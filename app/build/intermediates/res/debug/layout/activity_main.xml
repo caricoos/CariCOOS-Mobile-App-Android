@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_alignParentLeft="true"
-                android:text="Map Leyend"
+                android:text="Map Legend"
                 android:textColor="@android:color/background_light" />
 
             <ImageView
@@ -112,7 +112,6 @@
                     android:textColor="@android:color/background_light"
                      />
             </LinearLayout>
-
 
             <LinearLayout
                 android:orientation="horizontal"
