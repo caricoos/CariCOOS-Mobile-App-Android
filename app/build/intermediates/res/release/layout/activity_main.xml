@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_alignParentLeft="true"
-                android:text="Map Leyend"
+                android:text="Map Legend"
                 android:textColor="@android:color/background_light" />
 
             <ImageView
@@ -113,7 +113,6 @@
                      />
             </LinearLayout>
 
-
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
@@ -132,12 +131,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="    -    Forecast Observation"
+                    android:text="    -    Forecast"
                     android:textColor="@android:color/background_light"
                     />
             </LinearLayout>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp"
+                android:layout_centerVertical="true">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ww_red"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="    -    Wave Watch"
+                    android:textColor="@android:color/background_light"
+                    />
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"

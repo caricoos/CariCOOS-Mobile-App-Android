@@ -52,57 +52,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/MainActivity.java">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2605263" vertical-offset="1216" max-vertical-offset="2880">
-              <caret line="690" column="17" selection-start-line="690" selection-start-column="17" selection-end-line="690" selection-end-column="17" />
+            <state vertical-scroll-proportion="2.067039" vertical-offset="0" max-vertical-offset="1335">
+              <caret line="74" column="66" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="66" />
               <folding>
-                <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#showAbout#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#showDisclaimer#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#setUpMapIfNeeded#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#setMapPreConfig#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#setPreSet#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#setPreSetFilters#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#changeType#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#readFile#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#createPopUp#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#getBouy#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#generateFilters#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#createFilter#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#generateInitialFilters#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#setMarkersInvisible#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#createMarkers#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#createMarkersForecast#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#createMarkersForecast2#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#setInfoWindow#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#roundZero#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#generateDirectionIcon#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#fixDateTime#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#createFile#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#updatePreSets#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#updatePreSetsFilters#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#doRefresh#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#2470#2497#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="filter.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/filter.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.555555" vertical-offset="240" max-vertical-offset="2280">
-              <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -701,18 +658,21 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_forecast.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/manu_forecast.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_forecast.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/forecast.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/about.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/disclaimer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/popup.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/presets.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/splashActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_wavewatch.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_wavewatch.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/filter.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/wavewatchActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/forecast.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -869,6 +829,66 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CariCOOS_app_Mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CariCOOS_app_Mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CariCOOS_app_Mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CariCOOS_app_Mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -934,8 +954,8 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="emulator-5554" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_6_API_21" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="FullScreen" value="false" />
@@ -959,13 +979,13 @@
     <key name="android.template.packageName">
       <recent name="caricoos_app_mobile.main" />
     </key>
-    <key name="android.template.parentActivityClass">
-      <recent name="" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-hdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-ldpi" />
       <recent name="$PROJECT_DIR$/app/libs" />
+    </key>
+    <key name="android.template.parentActivityClass">
+      <recent name="" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.app">
@@ -1175,7 +1195,7 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36793694" sideWeight="0.5003928" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325887" sideWeight="0.49960724" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3701016" sideWeight="0.49960724" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17997098" sideWeight="0.49960724" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280116" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1215,105 +1235,13 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9315">
-          <caret line="590" column="50" selection-start-line="590" selection-start-column="50" selection-end-line="590" selection-end-column="50" />
-          <folding>
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#showAbout#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#showDisclaimer#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setUpMapIfNeeded#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setMapPreConfig#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setPreSet#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setPreSetFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#changeType#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#readFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createPopUp#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getBouy#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#generateFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createFilter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#generateInitialFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setMarkersInvisible#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createMarkers#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createMarkersForecast#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createMarkersForecast2#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setInfoWindow#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#roundZero#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#generateDirectionIcon#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#fixDateTime#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updatePreSets#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updatePreSetsFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#doRefresh#0;class#MainActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/splashActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="1410">
-          <caret line="65" column="9" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2415">
-          <caret line="182" column="110" selection-start-line="182" selection-start-column="110" selection-end-line="182" selection-end-column="110" />
-          <folding>
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#showAbout#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#showDisclaimer#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setUpMapIfNeeded#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setMapPreConfig#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setPreSet#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setPreSetFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#changeType#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#readFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createPopUp#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getBouy#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#generateFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createFilter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#generateInitialFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setMarkersInvisible#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createMarkers#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createMarkersForecast#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createMarkersForecast2#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setInfoWindow#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#roundZero#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#generateDirectionIcon#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#fixDateTime#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updatePreSets#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updatePreSetsFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#doRefresh#0;class#MainActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/splashActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1050" max-vertical-offset="1755">
-          <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="975">
           <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
-          <folding />
+          <folding>
+            <element signature="e#2470#2497#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1349,7 +1277,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9555">
           <caret line="155" column="33" selection-start-line="155" selection-start-column="30" selection-end-line="155" selection-end-column="33" />
           <folding>
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
@@ -1360,19 +1287,18 @@
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setMapPreConfig#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setPreSet#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setPreSetFilters#0;class#MainActivity#0" expanded="false" />
             <element signature="method#changeType#0;class#MainActivity#0" expanded="false" />
             <element signature="method#readFile#0;class#MainActivity#0" expanded="false" />
             <element signature="method#createPopUp#0;class#MainActivity#0" expanded="false" />
             <element signature="method#getBouy#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#generateFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createFilter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#generateInitialFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setMarkersInvisible#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#showPreSetsOpts#0;class#MainActivity#0" expanded="false" />
             <element signature="method#createMarkers#0;class#MainActivity#0" expanded="false" />
             <element signature="method#createMarkersForecast#0;class#MainActivity#0" expanded="false" />
             <element signature="method#createMarkersForecast2#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#createMarkersWavewatch#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setInfoWindow#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#38631#39843#0" expanded="true" />
+            <element signature="e#39841#39842#0" expanded="true" />
             <element signature="method#roundZero#0;class#MainActivity#0" expanded="false" />
             <element signature="method#generateDirectionIcon#0;class#MainActivity#0" expanded="false" />
             <element signature="method#fixDateTime#0;class#MainActivity#0" expanded="false" />
@@ -1395,7 +1321,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="254" max-vertical-offset="915">
           <caret line="44" column="66" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="66" />
-          <folding />
+          <folding>
+            <element signature="e#2470#2497#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1534,36 +1462,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_forecast.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="381">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="421">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_radar.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2542373" vertical-offset="0" max-vertical-offset="354">
-          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.252809" vertical-offset="0" max-vertical-offset="356">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -1627,35 +1529,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/forecast.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5147059" vertical-offset="0" max-vertical-offset="780">
-          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="20" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3146067" vertical-offset="2402" max-vertical-offset="2895">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/buoy_red.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="644" max-vertical-offset="1305">
-          <caret line="65" column="66" selection-start-line="65" selection-start-column="66" selection-end-line="65" selection-end-column="66" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/presets.xml">
@@ -1669,41 +1545,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/radar.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_wavewatch.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
-          <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="661">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/splashActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_forecast.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4827586" vertical-offset="1694" max-vertical-offset="2355">
-          <caret line="129" column="69" selection-start-line="129" selection-start-column="52" selection-end-line="129" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/filter.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_forecast.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.555555" vertical-offset="240" max-vertical-offset="2280">
-          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.23746702" vertical-offset="0" max-vertical-offset="379">
+          <caret line="6" column="10" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27559054" vertical-offset="0" max-vertical-offset="381">
+          <caret line="7" column="35" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2605263" vertical-offset="1216" max-vertical-offset="2880">
-          <caret line="690" column="17" selection-start-line="690" selection-start-column="17" selection-end-line="690" selection-end-column="17" />
+        <state vertical-scroll-proportion="-0.22504893" vertical-offset="4165" max-vertical-offset="6105">
+          <caret line="677" column="28" selection-start-line="677" selection-start-column="16" selection-end-line="677" selection-end-column="28" />
           <folding>
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
@@ -1714,19 +1595,18 @@
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setMapPreConfig#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setPreSet#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setPreSetFilters#0;class#MainActivity#0" expanded="false" />
             <element signature="method#changeType#0;class#MainActivity#0" expanded="false" />
             <element signature="method#readFile#0;class#MainActivity#0" expanded="false" />
             <element signature="method#createPopUp#0;class#MainActivity#0" expanded="false" />
             <element signature="method#getBouy#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#generateFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createFilter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#generateInitialFilters#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setMarkersInvisible#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#showPreSetsOpts#0;class#MainActivity#0" expanded="false" />
             <element signature="method#createMarkers#0;class#MainActivity#0" expanded="false" />
             <element signature="method#createMarkersForecast#0;class#MainActivity#0" expanded="false" />
             <element signature="method#createMarkersForecast2#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#createMarkersWavewatch#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setInfoWindow#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#38631#39843#0" expanded="true" />
+            <element signature="e#39841#39842#0" expanded="true" />
             <element signature="method#roundZero#0;class#MainActivity#0" expanded="false" />
             <element signature="method#generateDirectionIcon#0;class#MainActivity#0" expanded="false" />
             <element signature="method#fixDateTime#0;class#MainActivity#0" expanded="false" />
@@ -1734,6 +1614,96 @@
             <element signature="method#updatePreSets#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updatePreSetsFilters#0;class#MainActivity#0" expanded="false" />
             <element signature="method#doRefresh#0;class#MainActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/filter.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="2760">
+          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_wavewatch.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11764706" vertical-offset="0" max-vertical-offset="510">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7647059" vertical-offset="1950" max-vertical-offset="3210">
+          <caret line="156" column="53" selection-start-line="156" selection-start-column="53" selection-end-line="156" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_radar.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1764706" vertical-offset="0" max-vertical-offset="510">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/splashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47672254" vertical-offset="2009" max-vertical-offset="2670">
+          <caret line="154" column="42" selection-start-line="154" selection-start-column="28" selection-end-line="154" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/radar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39106146" vertical-offset="0" max-vertical-offset="690">
+          <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/wavewatchActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6424581" vertical-offset="0" max-vertical-offset="765">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/caricoos_app_mobile/main/forecast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30726257" vertical-offset="0" max-vertical-offset="825">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.067039" vertical-offset="0" max-vertical-offset="1335">
+          <caret line="74" column="66" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="66" />
+          <folding>
+            <element signature="e#2470#2497#0" expanded="true" />
           </folding>
         </state>
       </provider>

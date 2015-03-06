@@ -123,16 +123,24 @@ ADDED from AndroidManifest.xml:55:9
 		ADDED from AndroidManifest.xml:58:13
 	android:name
 		ADDED from AndroidManifest.xml:56:13
-meta-data#com.google.android.maps.v2.API_KEY
+activity#caricoos_app_mobile.main.wavewatchActivity
 ADDED from AndroidManifest.xml:64:9
-	android:value
+	android:label
 		ADDED from AndroidManifest.xml:66:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:67:13
 	android:name
 		ADDED from AndroidManifest.xml:65:13
+meta-data#com.google.android.maps.v2.API_KEY
+ADDED from AndroidManifest.xml:73:9
+	android:value
+		ADDED from AndroidManifest.xml:75:13
+	android:name
+		ADDED from AndroidManifest.xml:74:13
 meta-data#com.google.android.gms.version
-ADDED from AndroidManifest.xml:67:9
+ADDED from AndroidManifest.xml:76:9
 MERGED from com.google.android.gms:play-services:6.5.87:21:9
 	android:value
-		ADDED from AndroidManifest.xml:69:13
+		ADDED from AndroidManifest.xml:78:13
 	android:name
-		ADDED from AndroidManifest.xml:68:13
+		ADDED from AndroidManifest.xml:77:13

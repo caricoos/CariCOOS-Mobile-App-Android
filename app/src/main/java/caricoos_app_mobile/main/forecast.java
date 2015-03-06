@@ -23,7 +23,6 @@ public class forecast extends Activity {
         browser = (WebView)findViewById(R.id.webview_forecast);
         browser.getSettings().setLoadWithOverviewMode(true);
         browser.getSettings().setUseWideViewPort(true);
-        browser.setInitialScale(30);
         browser.loadUrl(URL);
     }
 

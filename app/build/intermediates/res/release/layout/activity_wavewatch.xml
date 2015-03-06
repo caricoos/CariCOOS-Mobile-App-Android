@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/webview_wavewatch">
+
+</WebView><!-- From: file:/Users/alexanderpadin/AndroidStudioProjects/CariCOOS_app_Mobile/app/src/main/res/layout/activity_wavewatch.xml -->

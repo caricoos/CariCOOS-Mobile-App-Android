@@ -1,6 +1,5 @@
 package caricoos_app_mobile.main;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,9 +26,11 @@ public class splashActivity extends Activity {
     public String DATA;
     public String DATA_FORECAST;
     public String DATA_FORECAST_ofs;
+    public String DATA_WAVEWATCH;
     public boolean dataReady = true;
     public boolean dataReady_forecast = true;
     public boolean dataReady_forecast_ofs = true;
+    public boolean dataReady_wavewatch = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,15 @@ public class splashActivity extends Activity {
                 dataReady_forecast_ofs = false;
             }
 
+            fetch fetchObj_wavewatch =
+                    new fetch( /*URL*/ "http://caricoos.org/Swan2.json");
+
+            DATA_WAVEWATCH = fetchObj_wavewatch.postData();
+
+            if(DATA_WAVEWATCH.isEmpty()) {
+                dataReady_wavewatch = false;
+            }
+
             return null;
         }
 
@@ -132,6 +142,17 @@ public class splashActivity extends Activity {
                     data_file.delete();
                 }
                 createFile("data_forecast_ofs.json", DATA_FORECAST_ofs);
+            }
+
+            if (!dataReady_wavewatch /*Verify if data is ready*/) {
+                Toast.makeText(getApplicationContext(),
+                        "There was na network error.", Toast.LENGTH_LONG).show();
+            } else {
+                File data_file = getFileStreamPath("data_wavewatch.json");
+                if(data_file.exists()){
+                    data_file.delete();
+                }
+                createFile("data_wavewatch.json", DATA_WAVEWATCH);
             }
 
             Intent i = new Intent(splashActivity.this, MainActivity.class);

@@ -4,7 +4,8 @@
     <string name="app_name">CariCOOS Mobile</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_radar">Doppler Radar</string>
-    <string name="title_activity_forecast">Forecast Observation</string>
+    <string name="title_activity_forecast">Forecast Information</string>
+    <string name="title_activity_ww">Wave Watch</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>

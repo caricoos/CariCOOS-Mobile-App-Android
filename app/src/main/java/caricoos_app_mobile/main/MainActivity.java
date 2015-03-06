@@ -61,6 +61,8 @@ public class MainActivity extends FragmentActivity {
 	private JSONArray data;
     private JSONArray data_forecast;
     private JSONArray data_forecast2;
+    private JSONArray data_wavewatch;
+
     private int mapLocationPreConfig;
 
 	ArrayList<Marker> markers = new ArrayList<Marker>();
@@ -69,17 +71,21 @@ public class MainActivity extends FragmentActivity {
     ArrayList<String> markers_keys_forecast= new ArrayList<String>();
     ArrayList<Marker> markers_forecast2 = new ArrayList<Marker>();
     ArrayList<String> markers_keys_forecast2 = new ArrayList<String>();
+    ArrayList<Marker> markers_wavewatch = new ArrayList<Marker>();
+    ArrayList<String> markers_keys_wavewatch = new ArrayList<String>();
 	ArrayList<String> filters = new ArrayList<String>();
 
 	CheckBox caricoos_check;
 	CheckBox wflow_check;
     CheckBox forecast_check;
     CheckBox forecast2_check;
+    CheckBox wavewatch_check;
 
 	boolean caricoos_checked = false;
 	boolean wflow_checked = false;
     boolean forecast_checked = false;
     boolean forecast2_checked = false;
+    boolean wavewatch_checked = false;
 
     private CheckBox pr_preconfig;
     private CheckBox west_preconfig;
@@ -146,10 +152,17 @@ public class MainActivity extends FragmentActivity {
             for(int i = 0 ; i< data_forecast2.length() ; i++){
                 createMarkersForecast2(data_forecast2.getJSONObject(i));
             }
-
-
         } catch (Exception e) { e.printStackTrace(); }
 
+        try {
+            data_wavewatch = new JSONArray(readFile("data_wavewatch.json"));
+        } catch (JSONException e) { e.printStackTrace(); }
+
+        try {
+            for(int i = 0 ; i< data_wavewatch.length() ; i++){
+                createMarkersWavewatch(data_wavewatch.getJSONObject(i));
+            }
+        } catch (Exception e) { e.printStackTrace(); }
 
         leyend_tab = (LinearLayout) findViewById(R.id.leyend_header);
         leyend_body = (LinearLayout) findViewById(R.id.leyend);
@@ -170,7 +183,6 @@ public class MainActivity extends FragmentActivity {
 
         setInfoWindow();
         generateInitialFilters();
-        setPreSetFilters();
     }
 
     protected void onStart() {
@@ -357,7 +369,7 @@ public class MainActivity extends FragmentActivity {
     private String setPreSetFilters(){
         File preSetFilter_file = getFileStreamPath("preSetFilters.txt");
         if(!preSetFilter_file.exists()){
-            String preSetVarFilter = "1:1:0:1:";
+            String preSetVarFilter = "1:1:0:1:1:";
             createFile("preSetFilters.txt", preSetVarFilter);
             return preSetVarFilter;
         } else {
@@ -579,6 +591,7 @@ public class MainActivity extends FragmentActivity {
         wflow_check = (CheckBox) dialog.findViewById(R.id.wflow_check);
         forecast_check = (CheckBox) dialog.findViewById(R.id.forecast_check);
         forecast2_check = (CheckBox) dialog.findViewById(R.id.forecast2_check);
+        wavewatch_check = (CheckBox) dialog.findViewById(R.id.wavewatch_check);
 
     	if(caricoos_checked) {
     		caricoos_check.setChecked(true);
@@ -604,13 +617,19 @@ public class MainActivity extends FragmentActivity {
             forecast2_check.setChecked(false);
         }
 
+        if(wavewatch_checked) {
+            wavewatch_check.setChecked(true);
+        } else {
+            wavewatch_check.setChecked(false);
+        }
+
     	Button filter_button = (Button) dialog.findViewById(R.id.filter_button);
     	filter_button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				filters.clear();
 
-                int coos = 0, wind = 0, forecast1 = 0, forecast2 = 0;
+                int coos = 0, wind = 0, forecast1 = 0, forecast2 = 0, wavewatch = 0;
 
 				if(caricoos_check.isChecked()) {
 		        	filters.add("caricoos");
@@ -645,7 +664,15 @@ public class MainActivity extends FragmentActivity {
                     forecast2_checked = false;
                 }
 
-                updatePreSetsFilters(coos, wind, forecast1, forecast2);
+                if(wavewatch_check.isChecked()) {
+                    filters.add("wavewatch");
+                    wavewatch_checked = true;
+                    wavewatch = 1;
+                } else {
+                    wavewatch_checked = false;
+                }
+
+                updatePreSetsFilters(coos, wind, forecast1, forecast2, wavewatch);
 
                 setMarkersInvisible();
 		    	createFilter();
@@ -763,6 +790,12 @@ public class MainActivity extends FragmentActivity {
                 }
             }
 
+            if(filter.equals("wavewatch")) {
+                for(int j = 0 ; j < markers_wavewatch.size() ; j++) {
+                    markers_wavewatch.get(j).setVisible(true);
+                }
+            }
+
     		for(int j = 0 ; j < markers.size() ; j++) {
     			if(((markers_keys.get(j)).toString()).equals(filter)) {
     				markers.get(j).setVisible(true);
@@ -780,6 +813,7 @@ public class MainActivity extends FragmentActivity {
         String wind = parts[1];
         String forecast1 = parts[2];
         String forecast2 = parts[3];
+        String wavewatch = parts[4];
 
         if(Integer.parseInt(coos) == 1) {
             caricoos_checked = true;
@@ -792,6 +826,9 @@ public class MainActivity extends FragmentActivity {
         }
         if(Integer.parseInt(forecast2) == 1) {
             forecast2_checked = true;
+        }
+        if(Integer.parseInt(wavewatch) == 1) {
+            wavewatch_checked = true;
         }
 
         filters.clear();
@@ -812,6 +849,9 @@ public class MainActivity extends FragmentActivity {
         if(forecast2_checked) {
             filters.add("forecast2");
         }
+        if(wavewatch_checked) {
+            filters.add("wavewatch");
+        }
 
         setMarkersInvisible();
         createFilter();
@@ -826,6 +866,9 @@ public class MainActivity extends FragmentActivity {
         }
         for(int i = 0 ; i < markers_forecast2.size() ; i++) {
             (markers_forecast2.get(i)).setVisible(false);
+        }
+        for(int i = 0 ; i < markers_wavewatch.size() ; i++) {
+            (markers_wavewatch.get(i)).setVisible(false);
         }
 	}
     
@@ -963,6 +1006,29 @@ public class MainActivity extends FragmentActivity {
         } catch (JSONException e) {	}
     }
 
+    public  void createMarkersWavewatch(JSONObject object) {
+        String WW3_NAME = "";
+        String WW3_LAT = "";
+        String WW3_LON = "";
+
+        try {
+            WW3_NAME = object.getString("WW3_NAME");
+            WW3_LAT = object.getString("WW3_LAT");
+            WW3_LON = object.getString("WW3_LON");
+
+            LatLng location = new LatLng(Double.valueOf(WW3_LAT), Double.valueOf(WW3_LON));
+            Marker marker = googleMap.addMarker(new MarkerOptions()
+                    .position(location)
+                    .title(WW3_NAME)
+                    .snippet("Press to get Wave Watch")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ww_red)));
+
+            markers_wavewatch.add(marker);
+            markers_keys_wavewatch.add("wavewatch");
+
+        } catch (JSONException e) {	}
+    }
+
     private void setInfoWindow() {
         googleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
             @Override
@@ -972,6 +1038,12 @@ public class MainActivity extends FragmentActivity {
                     Intent i = new Intent(getApplicationContext(), forecast.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("url", name[1]);
+                    i.putExtras(bundle);
+                    startActivity(i);
+                } else if(marker.getSnippet().toString().equals("Press to get Wave Watch")) {
+                    Intent i = new Intent(getApplicationContext(), wavewatchActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("url", marker.getTitle().toString());
                     i.putExtras(bundle);
                     startActivity(i);
                 } else {
@@ -1076,8 +1148,8 @@ public class MainActivity extends FragmentActivity {
         createFile("preSet.txt", newPreset);
     }
 
-    public void updatePreSetsFilters(int coos, int wind, int forecast1, int forecast2) {
-        String newPreset = coos + ":" + wind + ":" + forecast1 + ":" + forecast2 + ":";
+    public void updatePreSetsFilters(int coos, int wind, int forecast1, int forecast2, int wavewatch) {
+        String newPreset = coos + ":" + wind + ":" + forecast1 + ":" + forecast2 + ":" + wavewatch + ":";
         File preSet_file = getFileStreamPath("preSetFilters.txt");
         preSet_file.delete();
         createFile("preSetFilters.txt", newPreset);
