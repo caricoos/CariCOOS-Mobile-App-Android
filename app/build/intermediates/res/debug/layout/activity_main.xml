@@ -125,7 +125,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/buoy_blue"/>
+                    android:src="@drawable/ww_red"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -148,7 +148,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ww_red"/>
+                    android:src="@drawable/buoy_blue"/>
 
                 <TextView
                     android:layout_width="wrap_content"

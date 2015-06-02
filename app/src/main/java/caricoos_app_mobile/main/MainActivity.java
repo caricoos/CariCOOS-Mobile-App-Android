@@ -526,12 +526,12 @@ public class MainActivity extends FragmentActivity {
 	    	    atmospheric_pressure.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Barometric Pressure (-3m)")))));
 	    	} catch(JSONException e) {}
 	    	try {
-	    	    current_speed.setText(roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Current Speed (2m)")))));
+	    	    current_speed.setText(roundZero(String.format(Locale.US,"%.2f", 1.94384449 * Double.parseDouble(Bouy.getString("Current Speed (2m)")))));
 	    	} catch(JSONException e) {}
 	    	try {
                 String current_dir = roundZero(String.format(Locale.US,"%.2f", Double.parseDouble(Bouy.getString("Current Direction (2m)"))));
                 current_direction.setText(current_dir);
-                generateDirectionIcon(Integer.parseInt(current_dir), current_icon);
+                generateDirectionCurrentsIcon(Integer.parseInt(current_dir), current_icon);
 	    	} catch(JSONException e) {}
 	    	
 	    	//dataDate set
@@ -973,7 +973,7 @@ public class MainActivity extends FragmentActivity {
                     .position(location)
                     .title(FANCYNAME + " ("+ NAME +")")
                     .snippet("Press to get forecast")
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.buoy_blue)));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ww_red)));
 
             markers_forecast.add(marker);
             markers_keys_forecast.add("forecast");
@@ -998,7 +998,7 @@ public class MainActivity extends FragmentActivity {
                     .position(location)
                     .title(FANCYNAME + " ("+ NAME +")")
                     .snippet("Press to get forecast")
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.buoy_blue)));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ww_red)));
 
             markers_forecast2.add(marker);
             markers_keys_forecast2.add("forecast2");
@@ -1020,8 +1020,8 @@ public class MainActivity extends FragmentActivity {
             Marker marker = googleMap.addMarker(new MarkerOptions()
                     .position(location)
                     .title(WW3_NAME)
-                    .snippet("Press to get Wave Watch")
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ww_red)));
+                    .snippet("Press to get Wavewatch III")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.buoy_blue)));
 
             markers_wavewatch.add(marker);
             markers_keys_wavewatch.add("wavewatch");
@@ -1040,7 +1040,7 @@ public class MainActivity extends FragmentActivity {
                     bundle.putString("url", name[1]);
                     i.putExtras(bundle);
                     startActivity(i);
-                } else if(marker.getSnippet().toString().equals("Press to get Wave Watch")) {
+                } else if(marker.getSnippet().toString().equals("Press to get Wavewatch III")) {
                     Intent i = new Intent(getApplicationContext(), wavewatchActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("url", marker.getTitle().toString());
@@ -1090,6 +1090,27 @@ public class MainActivity extends FragmentActivity {
             icon.setImageResource(R.drawable.west);
         } else {                                                //North West
             icon.setImageResource(R.drawable.north_west);
+        }
+    }
+
+    private void generateDirectionCurrentsIcon(int dir, ImageView icon) {
+        if(dir > 315 + 22.5 && dir <= 360 ||
+                dir >= 0 && dir <= 45 - 22.5) {                 //North
+            icon.setImageResource(R.drawable.north_c);
+        } else if(dir > 0 + 22.5 && dir <= 90 - 22.5) {         //North East
+            icon.setImageResource(R.drawable.north_east_c);
+        } else if(dir > 45 + 22.5 && dir <= 135 - 22.5) {       //East
+            icon.setImageResource(R.drawable.east_c);
+        } else if(dir > 90 + 22.5 && dir <= 180 - 22.5) {       //South East
+            icon.setImageResource(R.drawable.south_east_c);
+        } else if(dir > 135 + 22.5 && dir <= 225 - 22.5) {      //South
+            icon.setImageResource(R.drawable.south_c);
+        } else if(dir > 180 + 22.5 && dir <= 270 - 22.5) {      //South West
+            icon.setImageResource(R.drawable.south_west_c);
+        } else if(dir > 225 + 22.5 && dir <= 3.15 - 22.5 ) {    //West
+            icon.setImageResource(R.drawable.west_c);
+        } else {                                                //North West
+            icon.setImageResource(R.drawable.north_west_c);
         }
     }
 

@@ -153,7 +153,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:text="Wave Watch" />
+                android:text="Wavewatch III" />
 
             <CheckBox android:id="@+id/wavewatch_check"
                 android:layout_width="wrap_content"

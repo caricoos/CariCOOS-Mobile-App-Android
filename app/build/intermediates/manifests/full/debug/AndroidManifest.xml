@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="caricoos_app_mobile.main"
-    android:versionCode="12"
-    android:versionName="2.3" >
+    android:versionCode="14"
+    android:versionName="2.5" >
 
     <uses-sdk
         android:minSdkVersion="12"
@@ -72,13 +72,8 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <!-- New Debug: AIzaSyD1G9DEKFHGX28UGE9lUNGp4ss2DFP4184 -->
         <!-- New Production: AIzaSyAkLIWqL1UtpNL4Hd1LWExwMgoajmZLX1Y -->
-
-
-        <!-- Make sure to change to 'New Debug' -->
-
     </application>
 
 </manifest>

@@ -116,8 +116,9 @@ public class splashActivity extends Activity {
                 if(date_file.exists()) {
                     date_file.delete();
                 }
+
                 createFile("data.json", DATA);
-                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss" /**/);
                 Date date = new Date();
                 createFile("date.txt", dateFormat.format(date));
             }
